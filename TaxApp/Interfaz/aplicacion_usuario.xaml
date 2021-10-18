@@ -1,0 +1,14 @@
+﻿<Window x:Class="TaxApp.Interfaz.aplicacion_usuario"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TaxApp.Interfaz"
+        mc:Ignorable="d"
+        Title="aplicacion_usuario" Height="450" Width="800">
+    <Grid>
+        <Button Content="Pedir un Taxi" HorizontalAlignment="Left" Height="100" Margin="212,171,0,0" VerticalAlignment="Top" Width="375" FontSize="24" ClickMode="Press" Click="Button_New_Viaje"/>
+        <Label Content="Bienvenido" HorizontalAlignment="Left" Height="68" Margin="10,21,0,0" VerticalAlignment="Top" Width="276" FontSize="36"/>
+        <Button Content="Cerrar Sesión" HorizontalAlignment="Left" Height="40" Margin="599,21,0,0" VerticalAlignment="Top" Width="183" ClickMode="Press" Click="Button_Cerrar"/>
+    </Grid>
+</Window>
