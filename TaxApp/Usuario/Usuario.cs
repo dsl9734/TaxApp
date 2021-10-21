@@ -32,6 +32,7 @@ namespace TaxApp.Usuario
         public string Tlf { get => tlf; set => tlf = value; }
         public string Tarjeta { get => tarjeta; set => tarjeta = value; }
 
+        //...............................................SQL..................USUARIO..........................................
         public string crearUsuario (Usuario usuario)
         {
             return "USE [Taxi] INSERT INTO[dbo].[usuario]([nombre],[correo],[tlf],[tarjeta])" +
@@ -48,6 +49,11 @@ namespace TaxApp.Usuario
             return "SELECT idUsuario FROM [Taxi].[dbo].[usuario] WHERE nombre = '" + usuario + "';";
         }
 
+        public string updateUsuarioSQL(Usuario usuario, int idUsuario)
+        {
+            return "UPDATE [dbo].[Usuario] SET [nombre] = '"+ usuario.nombre + "' ,[correo] = '" + usuario.correo "' ,[tlf] = '" + usuario.tlf +"' ,[metodo_pago] = "'' + usuario.tarjeta + "' WHERE idUsuario = '"+idUsuario;
+        }
+        // .......................................SQL.........SESION...........................................
         public string inicioSesionSQL (int idUsuario)
         {
             return "USE [Taxi] INSERT INTO[dbo].[sesion] ([Usuario_idUsuario],[fecha_hora]) VALUES (" +
@@ -59,6 +65,8 @@ namespace TaxApp.Usuario
             return "SELECT * FROM [Taxi].[dbo].[Sesion] ORDER BY idSesion DESC";
         }
 
+
+        //.............................................FUNCIONES DE USUARIO Y SESIONES................................
         public int crearUsuario(string nombre, string correo, string tlf, string tarjeta)
         {
             Conexion conexion = new Conexion();

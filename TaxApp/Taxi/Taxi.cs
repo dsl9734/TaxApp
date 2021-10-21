@@ -29,6 +29,8 @@ namespace TaxApp.Taxi
         public string Ubicacion { get => ubicacion; set => ubicacion = value; }
         public string Destino { get => destino; set => destino = value; }
 
+
+        //.................................................SQL TAXI.........................................
         public string crearTaxi(Taxi taxi)
         {
             return "USE [Taxi] INSERT INTO[dbo].[taxi]([estado],[ubicacion],[destino])" +
@@ -50,6 +52,8 @@ namespace TaxApp.Taxi
             return "USE [taxi] UPDATE [dbo].[taxi] SET [estado] = '" + taxi.estado + "',[ubicacion] = '" + taxi.ubicacion + "',[destino] = '" + taxi.destino + "' WHERE idTaxi = " + idTaxi;
         }
 
+
+        //.......................................FUNCIONES TAXI....................................................
         public Taxi sqlTaxi(DataTable dataU)
         {
             Conexion conexion = new Conexion();
