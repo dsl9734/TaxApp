@@ -7,9 +7,10 @@
         mc:Ignorable="d"
         Title="aplicacion_admin" Height="450" Width="800">
     <Grid>
-        <Button Content="Viajes" HorizontalAlignment="Left" Height="100" Margin="202,94,0,0" VerticalAlignment="Top" Width="375" FontSize="24" ClickMode="Press" Click="Button_Viajes"/>
-        <Label Content="Bienvenido" HorizontalAlignment="Left" Height="68" Margin="10,21,0,0" VerticalAlignment="Top" Width="276" FontSize="36"/>
-        <Button Content="Cerrar Sesión" HorizontalAlignment="Left" Height="40" Margin="599,21,0,0" VerticalAlignment="Top" Width="183" ClickMode="Press" Click="Button_Cerrar"/>
-        <Button Content="Mis Taxis" HorizontalAlignment="Left" Height="100" Margin="202,265,0,0" VerticalAlignment="Top" Width="375" FontSize="24" ClickMode="Press" Click="Button_Mis_Taxis"/>
+        <Button Content="Viajes" HorizontalAlignment="Left" Height="100" Margin="61,94,0,0" VerticalAlignment="Top" Width="375" FontSize="24" ClickMode="Press" Click="Button_Viajes"/>
+        <Label Content="Bienvenido" HorizontalAlignment="Left" Height="68" Margin="61,10,0,0" VerticalAlignment="Top" Width="276" FontSize="36"/>
+        <Button Content="Cerrar Sesión" HorizontalAlignment="Left" Height="40" Margin="533,29,0,0" VerticalAlignment="Top" Width="183" ClickMode="Press" Click="Button_Cerrar"/>
+        <Button Content="Mis Taxis" HorizontalAlignment="Left" Height="100" Margin="61,263,0,0" VerticalAlignment="Top" Width="375" FontSize="24" ClickMode="Press" Click="Button_Mis_Taxis"/>
+        <Button Content="Informe Historial" HorizontalAlignment="Left" Margin="533,140,0,0" VerticalAlignment="Top" Width="223" Height="136" FontSize ="24" Click="Button_Click"/>
     </Grid>
 </Window>

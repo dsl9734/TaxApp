@@ -34,7 +34,8 @@ namespace TaxApp.Interfaz
 
         private void Button_Aceptar(object sender, RoutedEventArgs e)
         {
-            aplicacion window1 = new aplicacion();
+            // No se pueden crear administradores
+            aplicacion_usuario window1 = new aplicacion_usuario();
             this.Visibility = Visibility.Hidden;
             window1.Show();
         }

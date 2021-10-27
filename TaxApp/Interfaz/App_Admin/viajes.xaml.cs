@@ -12,23 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace TaxApp.Interfaz
+namespace TaxApp.Interfaz.App_Admin
 {
     /// <summary>
-    /// Lógica de interacción para aplicacion_usuario.xaml
+    /// Lógica de interacción para viajes.xaml
     /// </summary>
-    public partial class aplicacion_usuario : Window
+    public partial class viajes : Window
     {
-        public aplicacion_usuario()
+        public viajes()
         {
             InitializeComponent();
-        }
-
-        private void Button_Cerrar(object sender, RoutedEventArgs e)
-        {
-            inicio window1 = new inicio();
-            this.Visibility = Visibility.Hidden;
-            window1.Show();
         }
     }
 }
