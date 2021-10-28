@@ -42,18 +42,28 @@ namespace TaxApp.Interfaz
         {
             if (usuario != null)
             {
-                us.inicioSesion(usuario);
-                if(Usuario.Text == "admin") {
-                    aplicacion_usuario window1 = new aplicacion_usuario();
-                    this.Visibility = Visibility.Hidden;
-                    window1.Show();
+                try { int res = us.inicioSesion(usuario);
+                    if (res == -1)
+                    {
+                        MessageBox.Show("Error de inicio de sesion.");
+                    }
+                    else
+                    {
+                        if (Usuario.Text == "admin")
+                        {
+                            aplicacion_usuario window1 = new aplicacion_usuario();
+                            this.Visibility = Visibility.Hidden;
+                            window1.Show();
+                        }
+                        else
+                        {
+                            aplicacion_admin window1 = new aplicacion_admin();
+                            this.Visibility = Visibility.Hidden;
+                            window1.Show();
+                        }
+                    }
                 }
-                else
-                {
-                    aplicacion_admin window1 = new aplicacion_admin();
-                    this.Visibility = Visibility.Hidden;
-                    window1.Show();
-                }
+                catch { MessageBox.Show("Ha ocurrido un error al iniciar sesión."); }
             }
         }
 

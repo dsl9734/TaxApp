@@ -53,6 +53,11 @@ namespace TaxApp.Usuario
         {
             return "UPDATE [dbo].[Usuario] SET [nombre] = '"+ usuario.nombre + "' ,[correo] = '" + usuario.correo "' ,[tlf] = '" + usuario.tlf +"' ,[metodo_pago] = "'' + usuario.tarjeta + "' WHERE idUsuario = '"+idUsuario;
         }
+
+        public string deleteUsuarioSQL(int id)
+        {
+            return "DELETE FROM [dbo].[Usuario] WHERE idUsuario = ";
+        }
         // .......................................SQL.........SESION...........................................
         public string inicioSesionSQL (int idUsuario)
         {
@@ -65,7 +70,10 @@ namespace TaxApp.Usuario
             return "SELECT * FROM [Taxi].[dbo].[Sesion] ORDER BY idSesion DESC";
         }
 
-
+        public string deleteSesionSQL(int idSesion)
+        {
+            return "DELETE FROM [dbo].[Sesion] WHERE idSesion = ";
+        }
         //.............................................FUNCIONES DE USUARIO Y SESIONES................................
         public int crearUsuario(string nombre, string correo, string tlf, string tarjeta)
         {
@@ -106,6 +114,21 @@ namespace TaxApp.Usuario
             
         }
 
+        public int getSesionActual()
+        {
+            Conexion conexion = new Conexion();
+            string sql1 = this.getSesiones();
+            try
+            {
+                DataTable dataSesion = conexion.ejecutaConsultaDataTable(sql1);
+                return int.Parse(dataSesion.Rows[0][0].ToString());
+            }
+            catch
+            {
+                MessageBox.Show("Error interno en sesion");
+                return -1;
+            }
+        }
         // Convertir Datos Sql en objetos
 
         public Usuario sqlUsuario(DataTable dataU)

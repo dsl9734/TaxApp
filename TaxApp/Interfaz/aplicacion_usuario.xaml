@@ -7,8 +7,10 @@
         mc:Ignorable="d"
         Title="aplicacion_usuario" Height="450" Width="800">
     <Grid>
-        <Button Content="Pedir un Taxi" HorizontalAlignment="Left" Height="100" Margin="212,171,0,0" VerticalAlignment="Top" Width="375" FontSize="24" ClickMode="Press" Click="Button_New_Viaje"/>
+        <Button Content="Pedir un Taxi" HorizontalAlignment="Left" Height="100" Margin="212,128,0,0" VerticalAlignment="Top" Width="375" FontSize="24" ClickMode="Press" Click="Button_New_Viaje"/>
         <Label Content="Bienvenido" HorizontalAlignment="Left" Height="68" Margin="10,21,0,0" VerticalAlignment="Top" Width="276" FontSize="36"/>
         <Button Content="Cerrar Sesión" HorizontalAlignment="Left" Height="40" Margin="599,21,0,0" VerticalAlignment="Top" Width="183" ClickMode="Press" Click="Button_Cerrar"/>
+        <Button Content="Cambiar Datos" HorizontalAlignment="Left" Height="100" Margin="212,276,0,0" VerticalAlignment="Top" Width="375" FontSize="24" ClickMode="Press" Click="Button_Cambiar_Datos"/>
+        <Button x:Name = "Borrar_Cuenta" Content="Borrar Cuenta" HorizontalAlignment="Left" Margin="599,354,0,0" VerticalAlignment="Top" Width="183" Height="41" Click="Borrar_Cuenta_Click"/>
     </Grid>
 </Window>

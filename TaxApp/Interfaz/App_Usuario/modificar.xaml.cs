@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,20 +13,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace TaxApp.Interfaz
+namespace TaxApp.Interfaz.App_Usuario
 {
     /// <summary>
-    /// Lógica de interacción para registro.xaml
+    /// Lógica de interacción para modificar.xaml
     /// </summary>
-    public partial class registro : Window
+    public partial class modificar : Window
     {
         string nombre, email, tlf, tarjeta;
 
-        public registro()
+        public modificar()
         {
             InitializeComponent();
         }
-
         private void TextBox_Movil(object sender, TextChangedEventArgs e)
         {
             TextBox txt = (TextBox)sender;
@@ -34,24 +34,22 @@ namespace TaxApp.Interfaz
 
         private void Button_Aceptar(object sender, RoutedEventArgs e)
         {
-            // No se pueden crear administradores
-            Usuario.Usuario usuario = new Usuario.Usuario();
+            // Generar UPDATE
+            Usuario.Usuario usuario = new Usuario.Usuario(nombre,email,tlf,tarjeta);
             Conexion conexion = new Conexion();
-            if (nombre == "admin")
+            try
             {
-                MessageBox.Show("No se puede crear un usuario administrador");
+                string sql2 = usuario.updateUsuarioSQL(usuario, usuario.getSesionActual());
+                conexion.ejecutaConsulta(sql2);
+                MessageBox.Show("Se han modificado los datos correctamente.");
+                aplicacion_usuario window1 = new aplicacion_usuario();
+                this.Visibility = Visibility.Hidden;
+                window1.Show();
             }
-            else
+
+            catch
             {
-                try { conexion.ejecutaConsulta(usuario.crearUsuario(usuario));
-
-                    MessageBox.Show("Usuario creado correctamente. Bienvenid@.");
-
-                    aplicacion_usuario window1 = new aplicacion_usuario();
-                    this.Visibility = Visibility.Hidden;
-                    window1.Show();
-                }
-                catch { MessageBox.Show("Ha ocurrido un error al crear el usuario"); }
+                MessageBox.Show("Ha ocurrido un error al modificar los datos del usuario.");
             }
         }
 

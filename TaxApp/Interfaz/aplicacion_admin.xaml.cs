@@ -20,6 +20,8 @@ namespace TaxApp.Interfaz
     /// </summary>
     public partial class aplicacion_admin : Window
     {
+        Conexion conexion = new Conexion();
+        Usuario.Usuario usuario = new Usuario.Usuario();
         public aplicacion_admin()
         {
             InitializeComponent();
@@ -35,10 +37,25 @@ namespace TaxApp.Interfaz
 
         private void Button_Cerrar(object sender, RoutedEventArgs e)
         {
-            inicio window1 = new inicio();
-            this.Visibility = Visibility.Hidden;
-            window1.Show();
+            MessageBoxResult dialog = MessageBox.Show("¿Seguro que deasea cerrar sesión?", "Borrar Cuenta", MessageBoxButton.YesNo);
+            if (dialog == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    conexion.ejecutaConsulta(usuario.deleteUsuarioSQL(usuario.getSesionActual()));
+
+                    inicio window1 = new inicio();
+                    this.Visibility = Visibility.Hidden;
+                    window1.Show();
+                }
+
+                catch
+                {
+                    MessageBox.Show("No se ha podido cerrar sesión correctamente");
+                }
+            }
         }
+
 
         private void Button_Mis_Taxis(object sender, RoutedEventArgs e)
         {

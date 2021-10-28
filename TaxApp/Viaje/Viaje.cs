@@ -34,8 +34,8 @@ namespace TaxApp.Viaje
         // Date es Date.Now
         public String postViajeSQL (int idUsuario, int idTaxi, String origen,String destino, String coste)
         {
-            return "INSERT INTO [dbo].[Viaje_Taxi]([Usuario_idUsuario],[Taxi_idTaxi],[fecha_hora],[origen],[destino],[coste])" + 
-            + "VALUES ('"+idUsuario+"','"+idTaxi+"','"+DateTime.Now+"','"+origen+"','"+destino+"','"+coste+"')";
+            return "INSERT INTO [dbo].[Viaje_Taxi]([Usuario_idUsuario],[Taxi_idTaxi],[fecha_hora],[origen],[destino],[coste]) " +
+                "VALUES ('"+idUsuario+"','"+idTaxi+"','"+DateTime.Now+"','"+origen+"','"+destino+"','"+coste+"')";
         }
     }
 }

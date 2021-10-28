@@ -67,6 +67,12 @@
     <Compile Include="Interfaz\App_Admin\viajes.xaml.cs">
       <DependentUpon>viajes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Interfaz\App_Usuario\modificar.xaml.cs">
+      <DependentUpon>modificar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\App_Usuario\usuario.xaml.cs">
+      <DependentUpon>usuario.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Interfaz\inicio.xaml.cs">
       <DependentUpon>inicio.xaml</DependentUpon>
     </Compile>
@@ -89,6 +95,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Interfaz\App_Admin\viajes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interfaz\App_Usuario\modificar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interfaz\App_Usuario\usuario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -140,8 +154,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaz\App_Usuario\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
