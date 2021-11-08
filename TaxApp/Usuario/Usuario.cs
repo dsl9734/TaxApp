@@ -51,7 +51,7 @@ namespace TaxApp.Usuario
 
         public string updateUsuarioSQL(Usuario usuario, int idUsuario)
         {
-            return "UPDATE [dbo].[Usuario] SET [nombre] = '"+ usuario.nombre + "' ,[correo] = '" + usuario.correo "' ,[tlf] = '" + usuario.tlf +"' ,[metodo_pago] = "'' + usuario.tarjeta + "' WHERE idUsuario = '"+idUsuario;
+            return "UPDATE [dbo].[Usuario] SET [nombre] = '"+ usuario.nombre + "' ,[correo] = '" + usuario.correo + "' ,[tlf] = '" + usuario.tlf +"' ,[metodo_pago] = '" + usuario.tarjeta + "' WHERE idUsuario = '"+idUsuario;
         }
 
         public string deleteUsuarioSQL(int id)
