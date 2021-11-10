@@ -9,11 +9,22 @@
         Title="usuario" Height="450" Width="800">
     <Grid>
 
-        <dxm:MapControl HorizontalAlignment="Left" Margin="0,10,-0.4,0" VerticalAlignment="Top" Height="410" Width="794">
+        <dxm:MapControl x:Name="Mapa" HorizontalAlignment="Left" Margin="0,10,-0.4,0" VerticalAlignment="Top" Height="410" Width="794" Cursor="Hand" MouseDoubleClick="Posición" MouseRightButtonDown="Destino">
             <dxm:ImageLayer Margin="0,0,-0.4,33.6">
-                <dxm:BingMapDataProvider/>
+                <dxm:OpenStreetMapDataProvider Kind="Transport">
+                    <dxm:OpenStreetMapDataProvider.RequestOptions>
+                        <dxm:TileImageRequestOptions/>
+                    </dxm:OpenStreetMapDataProvider.RequestOptions>
+                </dxm:OpenStreetMapDataProvider>
             </dxm:ImageLayer>
         </dxm:MapControl>
+        <TextBox x:Name="Origen" HorizontalAlignment="Left" Height="25" Margin="662,195,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="122"/>
+        <TextBox x:Name="Destino_T" HorizontalAlignment="Left" Height="25" Margin="662,286,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="122"/>
+        <Label Content="Origen" HorizontalAlignment="Left" Height="24" Margin="662,166,0,0" VerticalAlignment="Top" Width="122"/>
+        <Label Content="Destino" HorizontalAlignment="Left" Height="24" Margin="662,257,0,0" VerticalAlignment="Top" Width="122"/>
+        <Button Content="Pedir Taxi" HorizontalAlignment="Left" Height="47" Margin="662,114,0,0" VerticalAlignment="Top" Width="122"/>
+        <Button Content="Atrás" HorizontalAlignment="Left" Height="33" Margin="662,10,0,0" VerticalAlignment="Top" Width="122"/>
+
 
     </Grid>
 </Window>
