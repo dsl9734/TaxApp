@@ -24,6 +24,8 @@ namespace TaxApp.Interfaz.App_Usuario
         private CoordPoint origen;
         private CoordPoint destino;
 
+        MapItemStorage storage = new MapItemStorage();
+
         public usuario()
         {
             InitializeComponent();
@@ -31,41 +33,32 @@ namespace TaxApp.Interfaz.App_Usuario
 
         private void E_Loaded(object sender, RoutedEventArgs e)
         {
-            // Create a map control and add it to the window.
-            MapControl map = new MapControl();
-            this.Content = map;
-
-            // Create a layer.
-            ImageLayer layer = new ImageLayer()
-            {
-                DataProvider = new BingMapDataProvider()
-                {
-                    BingKey = "5ynYitjIQegPFoMgdUGh~Bg_UuGTiXPNDCwRJPacA1A~AlQceVgV-f-Z2xXfKBZg44AIf-7i3z0IfYJYAz8_7CmubHWtU-47up0s7XvLrs_H",
-                    Kind = BingMapKind.Road
-                }
-            };
-            map.Layers.Add(layer);
-            map.ZoomLevel = 12;
-            map.CenterPoint = new GeoPoint(40.381841, -3.686841);
+            Mapa.ZoomLevel = 12;
+            Mapa.CenterPoint = new GeoPoint(40.381841, -3.686841);
 
         }
         private void Posición(object sender, MouseButtonEventArgs e)
         {
-            //origen = Mapa.ScreenPointToMapUnit(e.GetPosition(""));
-            Origen.Text = origen.ToString();
+            Point mousePoint = e.GetPosition(Mapa);
+            //origen = Mapa.ScreenPointToCoordPoint(mousePoint);
+            Origen.Text = "X: " + mousePoint.X + " , Y: " + mousePoint.Y;
         }
 
         private void Destino(object sender, MouseButtonEventArgs e)
         {
-            //destino = Mapa.ScreenPointToMapUnit(e.GetPosition(""));
-            Destino_T.Text = destino.ToString();
+            Point mousePoint = e.GetPosition(Mapa);
+            //destino = Mapa.ScreenPointToCoordPoint(mousePoint);
+            Destino_T.Text = "X: " + mousePoint.X + " , Y: " + mousePoint.Y;
         }
 
-        private String calcularTarifa(Func<CoordPoint,MapUnit> origen,Func<CoordPoint, MapUnit> destino)
+        private String calcularTarifa(CoordPoint origen,CoordPoint destino)
         {
-            int precio = 0;
+            double distancia = Math.Sqrt((Math.Pow(origen.GetX() - destino.GetX(), 2) + Math.Pow(origen.GetY() - destino.GetY(), 2)));
+            double precioKm = 0;
+            double precio = precioKm * distancia;
             if(precio >= 0)
             {
+                MessageBox.Show("El precio del Viaje es de "+ precio +" €");
                 return "" + precio;
             }
             else
@@ -73,6 +66,26 @@ namespace TaxApp.Interfaz.App_Usuario
                 MessageBox.Show("Error: No se ha podido calcular correctamente la tarifa.");
                 return null;
             }
+        }
+
+        private void Destino_T_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            // Void
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            calcularTarifa(origen, destino);
+            aplicacion_usuario window1 = new aplicacion_usuario();
+            this.Visibility = Visibility.Hidden;
+            window1.Show();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            aplicacion_usuario window1 = new aplicacion_usuario();
+            this.Visibility = Visibility.Hidden;
+            window1.Show();
         }
     }
 }

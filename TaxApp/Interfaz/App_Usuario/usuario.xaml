@@ -16,16 +16,16 @@
             <dxm:MapControl.CoordinateSystem>
                 <dxm:GeoMapCoordinateSystem/>
             </dxm:MapControl.CoordinateSystem>
-            <dxm:ImageLayer Margin="0,0,-0.4,33.6">
+            <dxm:ImageLayer RenderTransformOrigin="0.471,0.632" Margin="0,-38,-0.4,37.6">
                 <dxm:BingMapDataProvider Kind="Road" TopLayer="TrafficFlow" BingKey="5ynYitjIQegPFoMgdUGh~Bg_UuGTiXPNDCwRJPacA1A~AlQceVgV-f-Z2xXfKBZg44AIf-7i3z0IfYJYAz8_7CmubHWtU-47up0s7XvLrs_H"/>
             </dxm:ImageLayer>
         </dxm:MapControl>
-        <TextBox x:Name="Origen" HorizontalAlignment="Left" Height="25" Margin="662,195,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="122"/>
-        <TextBox x:Name="Destino_T" HorizontalAlignment="Left" Height="25" Margin="662,286,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="122"/>
+        <TextBox x:Name="Origen" HorizontalAlignment="Left" Height="25" Margin="662,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="122"/>
+        <TextBox x:Name="Destino_T" HorizontalAlignment="Left" Height="25" Margin="662,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="122" TextChanged="Destino_T_TextChanged"/>
         <Label Content="Origen" HorizontalAlignment="Left" Height="24" Margin="662,166,0,0" VerticalAlignment="Top" Width="122"/>
         <Label Content="Destino" HorizontalAlignment="Left" Height="24" Margin="662,257,0,0" VerticalAlignment="Top" Width="122"/>
-        <Button Content="Pedir Taxi" HorizontalAlignment="Left" Height="47" Margin="662,114,0,0" VerticalAlignment="Top" Width="122"/>
-        <Button Content="Atrás" HorizontalAlignment="Left" Height="33" Margin="662,10,0,0" VerticalAlignment="Top" Width="122"/>
+        <Button Content="Pedir Taxi" HorizontalAlignment="Left" Height="47" Margin="662,114,0,0" VerticalAlignment="Top" Width="122" Click="Button_Click"/>
+        <Button Content="Atrás" HorizontalAlignment="Left" Height="33" Margin="662,40,0,0" VerticalAlignment="Top" Width="122" Click="Button_Click_1"/>
 
 
     </Grid>
