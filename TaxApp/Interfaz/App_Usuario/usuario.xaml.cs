@@ -21,8 +21,8 @@ namespace TaxApp.Interfaz.App_Usuario
     /// </summary>
     public partial class usuario : Window
     {
-        private CoordPoint origen;
-        private CoordPoint destino;
+        private Point mousePointO;
+        private Point mousePointD;
 
         MapItemStorage storage = new MapItemStorage();
 
@@ -39,23 +39,22 @@ namespace TaxApp.Interfaz.App_Usuario
         }
         private void Posición(object sender, MouseButtonEventArgs e)
         {
-            Point mousePoint = e.GetPosition(Mapa);
-            //origen = Mapa.ScreenPointToCoordPoint(mousePoint);
-            Origen.Text = "X: " + mousePoint.X + " , Y: " + mousePoint.Y;
+            mousePointO = e.GetPosition(Mapa);
+            Origen.Text = "X: " + mousePointO.X + " , Y: " + mousePointO.Y;
         }
 
         private void Destino(object sender, MouseButtonEventArgs e)
         {
-            Point mousePoint = e.GetPosition(Mapa);
-            //destino = Mapa.ScreenPointToCoordPoint(mousePoint);
-            Destino_T.Text = "X: " + mousePoint.X + " , Y: " + mousePoint.Y;
+            mousePointD = e.GetPosition(Mapa);
+            Destino_T.Text = "X: " + mousePointD.X + " , Y: " + mousePointD.Y;
         }
 
-        private String calcularTarifa(CoordPoint origen,CoordPoint destino)
+        private String calcularTarifa(Point origen,Point destino)
         {
-            double distancia = Math.Sqrt((Math.Pow(origen.GetX() - destino.GetX(), 2) + Math.Pow(origen.GetY() - destino.GetY(), 2)));
-            double precioKm = 0;
-            double precio = precioKm * distancia;
+            double distancia = Math.Sqrt((Math.Pow(origen.X - destino.X, 2) + Math.Pow(origen.Y - destino.Y, 2)));
+            double precioBase = 10;
+            double precioKm = 0.1;
+            double precio = Math.Round(precioBase + precioKm * distancia,2);
             if(precio >= 0)
             {
                 MessageBox.Show("El precio del Viaje es de "+ precio +" €");
@@ -75,7 +74,7 @@ namespace TaxApp.Interfaz.App_Usuario
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            calcularTarifa(origen, destino);
+            calcularTarifa(mousePointO, mousePointD);
             aplicacion_usuario window1 = new aplicacion_usuario();
             this.Visibility = Visibility.Hidden;
             window1.Show();
