@@ -35,7 +35,7 @@ namespace TaxApp.Usuario
         //...............................................SQL..................USUARIO..........................................
         public string crearUsuario (Usuario usuario)
         {
-            return "USE [Taxi] INSERT INTO[dbo].[usuario]([nombre],[correo],[tlf],[tarjeta])" +
+            return "USE [Taxi] INSERT INTO[dbo].[usuario]([nombre],[correo],[tlf],[metodo_pago])" +
                 "VALUES('" + usuario.nombre + "','" + usuario.correo + "','" + usuario.tlf + "','" + usuario.tarjeta  + "');";
         }
 
@@ -61,8 +61,8 @@ namespace TaxApp.Usuario
         // .......................................SQL.........SESION...........................................
         public string inicioSesionSQL (int idUsuario)
         {
-            return "USE [Taxi] INSERT INTO[dbo].[sesion] ([Usuario_idUsuario],[fecha_hora]) VALUES (" +
-                + idUsuario + "','" + DateTime.Now +");";
+            return "USE [Taxi] INSERT INTO[dbo].[sesion] ([Usuario_idUsuario]) VALUES ('" +
+                + idUsuario + "');";
         }
 
         public string getSesiones()
@@ -108,7 +108,7 @@ namespace TaxApp.Usuario
 
             catch
             {
-                MessageBox.Show("Se ha producido un error al intentar crear el nuevo usuario");
+                MessageBox.Show("Se ha producido un error al intentar iniciar sesion;");
                 return -1;
             }
             

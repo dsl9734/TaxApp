@@ -29,30 +29,49 @@ namespace TaxApp.Interfaz
         private void TextBox_Movil(object sender, TextChangedEventArgs e)
         {
             TextBox txt = (TextBox)sender;
-            nombre = Nombre.Text;
+            tlf = TlfMovil.Text;
         }
 
         private void Button_Aceptar(object sender, RoutedEventArgs e)
         {
-            // No se pueden crear administradores
-            Usuario.Usuario usuario = new Usuario.Usuario();
-            Conexion conexion = new Conexion();
+            // Comprobaciones de datos
             if (nombre == "admin")
             {
                 MessageBox.Show("No se puede crear un usuario administrador");
             }
+            else if (tlf.Length != 9)
+            {
+                MessageBox.Show("El número de teléfono no tiene 9 números");
+            }
             else
             {
-                try { conexion.ejecutaConsulta(usuario.crearUsuario(usuario));
-
-                    MessageBox.Show("Usuario creado correctamente. Bienvenid@.");
-
-                    aplicacion_usuario window1 = new aplicacion_usuario();
-                    this.Visibility = Visibility.Hidden;
-                    window1.Show();
+                Usuario.Usuario usuario = new Usuario.Usuario(nombre,email,tlf,tarjeta);
+                Conexion conexion = new Conexion();
+                // Regitro en SQL
+                try
+                {
+                    string query = usuario.crearUsuario(usuario);
+                    conexion.ejecutaConsulta(query);
+                    // Inicio Sesión
+                    try
+                    {
+                        int res = usuario.inicioSesion(nombre);
+                        if (res == -1)
+                        {
+                            MessageBox.Show("Error de inicio de sesion.");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Usuario creado correctamente. Bienvenid@.");
+                            aplicacion_usuario window1 = new aplicacion_usuario();
+                            this.Visibility = Visibility.Hidden;
+                            window1.Show();
+                        }
+                    }
+                    catch { MessageBox.Show("Error al iniciar sesión con el nuevo usuario"); }
                 }
                 catch { MessageBox.Show("Ha ocurrido un error al crear el usuario"); }
-            }
+            } 
         }
 
         private void Button_Cancelar(object sender, RoutedEventArgs e)
@@ -65,19 +84,19 @@ namespace TaxApp.Interfaz
         private void TextBox_Tarjeta(object sender, TextChangedEventArgs e)
         {
             TextBox txt = (TextBox)sender;
-            email = Email.Text;
+            tarjeta = NºTarjeta.Text;
         }
 
         private void TextBox_EMail(object sender, TextChangedEventArgs e)
         {
             TextBox txt = (TextBox)sender;
-            tlf = TlfMovil.Text;
+            email = Email.Text;
         }
 
         private void TextBox_NombreDeUsuario(object sender, TextChangedEventArgs e)
         {
             TextBox txt = (TextBox)sender;
-            tarjeta = NºTarjeta.Text;
+            nombre = Nombre.Text;
         }
     }
 }

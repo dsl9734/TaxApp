@@ -49,7 +49,7 @@ namespace TaxApp.Interfaz
                     }
                     else
                     {
-                        if (Usuario.Text == "admin")
+                        if (Usuario.Text != "admin")
                         {
                             aplicacion_usuario window1 = new aplicacion_usuario();
                             this.Visibility = Visibility.Hidden;

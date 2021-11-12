@@ -29,12 +29,13 @@ namespace TaxApp.Interfaz
 
         private void Button_Cerrar(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult dialog = MessageBox.Show("¿Seguro que deasea cerrar sesión?", "Borrar Cuenta", MessageBoxButton.YesNo);
+            MessageBoxResult dialog = MessageBox.Show("¿Seguro que deasea cerrar sesión?", "Cerrar Sesión", MessageBoxButton.YesNo);
             if (dialog == MessageBoxResult.Yes)
             {
                 try
                 {
-                    conexion.ejecutaConsulta(usuario.deleteUsuarioSQL(usuario.getSesionActual()));
+                    string query = usuario.deleteUsuarioSQL(usuario.getSesionActual());
+                    conexion.ejecutaConsulta(query);
 
                     inicio window1 = new inicio();
                     this.Visibility = Visibility.Hidden;
