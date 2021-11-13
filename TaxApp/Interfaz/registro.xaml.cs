@@ -55,7 +55,7 @@ namespace TaxApp.Interfaz
                     // Inicio Sesión
                     try
                     {
-                        int res = usuario.inicioSesion(nombre);
+                        int res = usuario.inicioSesion(nombre,Contrasena.Text);
                         if (res == -1)
                         {
                             MessageBox.Show("Error de inicio de sesion.");

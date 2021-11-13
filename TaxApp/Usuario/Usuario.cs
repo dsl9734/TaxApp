@@ -14,13 +14,15 @@ namespace TaxApp.Usuario
         string correo;
         string tlf;
         string tarjeta;
+        string contrasena;
 
-        public Usuario(string nombre, string correo, string tlf, string tarjeta)
+        public Usuario(string nombre, string correo, string tlf, string tarjeta,string contrasena)
         {
             this.Nombre = nombre;
             this.Correo = correo;
             this.Tlf = tlf;
             this.Tarjeta = tarjeta;
+            this.contrasena = contrasena;
         }
 
         public Usuario()
@@ -31,12 +33,14 @@ namespace TaxApp.Usuario
         public string Correo { get => correo; set => correo = value; }
         public string Tlf { get => tlf; set => tlf = value; }
         public string Tarjeta { get => tarjeta; set => tarjeta = value; }
+        public string Contrasena { get => contrasena; set => contrasena = value; }
+
 
         //...............................................SQL..................USUARIO..........................................
         public string crearUsuario (Usuario usuario)
         {
-            return "USE [Taxi] INSERT INTO[dbo].[usuario]([nombre],[correo],[tlf],[metodo_pago])" +
-                "VALUES('" + usuario.nombre + "','" + usuario.correo + "','" + usuario.tlf + "','" + usuario.tarjeta  + "');";
+            return "USE [Taxi] INSERT INTO[dbo].[usuario]([nombre],[correo],[tlf],[metodo_pago],[contrasena])" +
+                "VALUES('" + usuario.nombre + "','" + usuario.correo + "','" + usuario.tlf + "','" + usuario.tarjeta  + "', '" + usuario.contrasena + "');";
         }
 
         public string getUsuario (int idUsuario)
@@ -51,7 +55,7 @@ namespace TaxApp.Usuario
 
         public string updateUsuarioSQL(Usuario usuario, int idUsuario)
         {
-            return "UPDATE [dbo].[Usuario] SET [nombre] = '"+ usuario.nombre + "' ,[correo] = '" + usuario.correo + "' ,[tlf] = '" + usuario.tlf +"' ,[metodo_pago] = '" + usuario.tarjeta + "' WHERE idUsuario = '"+idUsuario;
+            return "UPDATE [dbo].[Usuario] SET [nombre] = '"+ usuario.nombre + "' ,[correo] = '" + usuario.correo + "' ,[tlf] = '" + usuario.tlf +"' ,[metodo_pago] = '" + usuario.tarjeta + ",[contrasena] = '" + usuario.contrasena + " WHERE idUsuario = '"+idUsuario;
         }
 
         public string deleteUsuarioSQL(int id)
