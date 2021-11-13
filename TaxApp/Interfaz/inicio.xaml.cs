@@ -19,7 +19,7 @@ namespace TaxApp.Interfaz
     /// </summary>
     public partial class inicio : Window
     {
-        string usuario;
+        string usuario,contrasena;
         Usuario.Usuario us = new TaxApp.Usuario.Usuario(); 
 
         public inicio()
@@ -29,7 +29,8 @@ namespace TaxApp.Interfaz
 
         private void Password_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            TextBox txt = (TextBox)sender;
+            contrasena = Password.Text;
         }
 
         private void TextBox_Usuario(object sender, TextChangedEventArgs e)
@@ -42,7 +43,7 @@ namespace TaxApp.Interfaz
         {
             if (usuario != null)
             {
-                try { int res = us.inicioSesion(usuario);
+                try { int res = us.inicioSesion(usuario,contrasena);
                     if (res == -1)
                     {
                         MessageBox.Show("Error de inicio de sesion.");

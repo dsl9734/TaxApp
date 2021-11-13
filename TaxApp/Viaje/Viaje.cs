@@ -31,6 +31,11 @@ namespace TaxApp.Viaje
             return "SELECT * FROM [taxi].[dbo].[viaje_taxi] WHERE idUsuario = " + "'"+ idUsuario +"';";
         }
 
+        public String getViajesTaxiSQL(int idTaxi)
+        {
+            return "SELECT * FROM [taxi].[dbo].[viaje_taxi] WHERE idTaxi = " + "'" + idTaxi + "';";
+        }
+
         // Date es Date.Now
         public String postViajeSQL (int idUsuario, int idTaxi, String origen,String destino, String coste)
         {

@@ -59,10 +59,10 @@ namespace TaxApp.Usuario
             return "DELETE FROM [dbo].[Usuario] WHERE idUsuario = ";
         }
         // .......................................SQL.........SESION...........................................
-        public string inicioSesionSQL (int idUsuario)
+        public string inicioSesionSQL (int idUsuario,string contrasena)
         {
-            return "USE [Taxi] INSERT INTO[dbo].[sesion] ([Usuario_idUsuario]) VALUES ('" +
-                + idUsuario + "');";
+            return "USE [Taxi] INSERT INTO[dbo].[sesion] ([Usuario_idUsuario],[fecha_hora],[contrasena]) VALUES ('" +
+                + idUsuario + "', '" + DateTime.Now + "', " + contrasena +"');";
         }
 
         public string getSesiones()
@@ -94,14 +94,14 @@ namespace TaxApp.Usuario
             }
         }
 
-        public int inicioSesion (string inicioSesion)
+        public int inicioSesion (string inicioSesion,string contrasena)
         {
             Conexion conexion = new Conexion();
             try
             {
                 string query1 = this.getIdUsuario(inicioSesion);
                 DataTable dataI = conexion.ejecutaConsultaDataTable(query1);
-                string query = this.inicioSesionSQL(int.Parse(dataI.Rows[0][0].ToString()));
+                string query = this.inicioSesionSQL(int.Parse(dataI.Rows[0][0].ToString()),contrasena);
 
                 return conexion.ejecutaConsulta(query);
             }
