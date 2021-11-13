@@ -50,7 +50,7 @@ namespace TaxApp.Usuario
 
         public string getIdUsuario(string usuario)
         {
-            return "SELECT idUsuario FROM [Taxi].[dbo].[usuario] WHERE nombre = '" + usuario + "';";
+            return "SELECT * FROM [Taxi].[dbo].[usuario] WHERE nombre = '" + usuario + "';";
         }
 
         public string updateUsuarioSQL(Usuario usuario, int idUsuario)
@@ -79,11 +79,11 @@ namespace TaxApp.Usuario
             return "DELETE FROM [dbo].[Sesion] WHERE idSesion = ";
         }
         //.............................................FUNCIONES DE USUARIO Y SESIONES................................
-        public int crearUsuario(string nombre, string correo, string tlf, string tarjeta)
+        public int crearUsuario(string nombre, string correo, string tlf, string tarjeta,string contrasena)
         {
             Conexion conexion = new Conexion();
 
-            Usuario usuario = new Usuario(nombre, correo, tlf,tarjeta);
+            Usuario usuario = new Usuario(nombre, correo, tlf,tarjeta,contrasena);
             try
             {
                 string sqlUsuario = this.crearUsuario(usuario);
@@ -105,9 +105,17 @@ namespace TaxApp.Usuario
             {
                 string query1 = this.getIdUsuario(inicioSesion);
                 DataTable dataI = conexion.ejecutaConsultaDataTable(query1);
-                string query = this.inicioSesionSQL(int.Parse(dataI.Rows[0][0].ToString()),contrasena);
 
-                return conexion.ejecutaConsulta(query);
+                if (contrasena == dataI.Rows[0][5].ToString())
+                {
+                    string query = this.inicioSesionSQL(int.Parse(dataI.Rows[0][0].ToString()), contrasena);
+
+                    return conexion.ejecutaConsulta(query);
+                }
+                else
+                {
+                    return -1;
+                }
             }
 
             catch
@@ -146,6 +154,7 @@ namespace TaxApp.Usuario
                 usuario.correo = fila[1].ToString();
                 usuario.tlf = fila[2].ToString();
                 usuario.tarjeta = fila[3].ToString();
+                usuario.contrasena = fila[4].ToString();
                 return usuario;
             }
 

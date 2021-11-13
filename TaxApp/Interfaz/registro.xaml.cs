@@ -45,7 +45,7 @@ namespace TaxApp.Interfaz
             }
             else
             {
-                Usuario.Usuario usuario = new Usuario.Usuario(nombre,email,tlf,tarjeta);
+                Usuario.Usuario usuario = new Usuario.Usuario(nombre,email,tlf,tarjeta,Contrasena.Text);
                 Conexion conexion = new Conexion();
                 // Regitro en SQL
                 try
