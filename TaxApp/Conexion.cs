@@ -13,7 +13,7 @@ namespace TaxApp
     {
         //public String connS = "server=localhost:3306;user id=root;database=taxi,password=admin";
         // public String connS = "Data Source=LAPTOP-3JQ7F1RA;Initial Catalog=taxi;Integrated Security=True"; // Portatil HP
-         public String connS = "Data Source=DESKTOP-4EUEAU1; Integrated Security=True"; // Torre Casa
+        public String connS = "Data Source=DESKTOP-4EUEAU1;Initial Catalog=taxi;Integrated Security=True"; // Torre Casa
         public SqlConnection con;
         public Conexion()
         {

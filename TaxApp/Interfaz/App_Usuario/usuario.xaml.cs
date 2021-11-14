@@ -52,7 +52,7 @@ namespace TaxApp.Interfaz.App_Usuario
         private String calcularTarifa(Point origen,Point destino)
         {
             double distancia = Math.Sqrt((Math.Pow(origen.X - destino.X, 2) + Math.Pow(origen.Y - destino.Y, 2)));
-            double precioBase = 10;
+            double precioBase = 5;
             double precioKm = 0.1;
             double precio = Math.Round(precioBase + precioKm * distancia,2);
             if(precio >= 0)
@@ -74,10 +74,15 @@ namespace TaxApp.Interfaz.App_Usuario
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            calcularTarifa(mousePointO, mousePointD);
-            aplicacion_usuario window1 = new aplicacion_usuario();
-            this.Visibility = Visibility.Hidden;
-            window1.Show();
+            string precio = calcularTarifa(mousePointO, mousePointD);
+            MessageBoxResult dialog = MessageBox.Show("¿Desea pedir el taxi?", "Pedir Taxi", MessageBoxButton.YesNo);
+            if(dialog == MessageBoxResult.Yes)
+            {
+                MessageBox.Show("Se ha pedido el taxi correctamente.");
+                aplicacion_usuario window1 = new aplicacion_usuario();
+                this.Visibility = Visibility.Hidden;
+                window1.Show();
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

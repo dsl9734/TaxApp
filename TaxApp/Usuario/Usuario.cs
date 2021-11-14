@@ -40,33 +40,33 @@ namespace TaxApp.Usuario
         public string crearUsuario (Usuario usuario)
         {
             return "USE [Taxi] INSERT INTO[dbo].[usuario]([nombre],[correo],[tlf],[metodo_pago],[contrasena])" +
-                "VALUES('" + usuario.nombre + "','" + usuario.correo + "','" + usuario.tlf + "','" + usuario.tarjeta  + "', '" + usuario.contrasena + "');";
+                "VALUES('" + usuario.nombre + "','" + usuario.correo + "','" + usuario.tlf + "','" + usuario.tarjeta  + "', '" + usuario.contrasena + "')";
         }
 
         public string getUsuario (int idUsuario)
         {
-            return "SELECT * FROM [Taxi].[dbo].[usuario] WHERE idUsuario = '" + idUsuario + "';";
+            return "SELECT * FROM [Taxi].[dbo].[usuario] WHERE idUsuario = '" + idUsuario + "'";
         }
 
         public string getIdUsuario(string usuario)
         {
-            return "SELECT * FROM [Taxi].[dbo].[usuario] WHERE nombre = '" + usuario + "';";
+            return "SELECT * FROM [Taxi].[dbo].[usuario] WHERE nombre = '" + usuario + "'";
         }
 
         public string updateUsuarioSQL(Usuario usuario, int idUsuario)
         {
-            return "UPDATE [dbo].[Usuario] SET [nombre] = '"+ usuario.nombre + "' ,[correo] = '" + usuario.correo + "' ,[tlf] = '" + usuario.tlf +"' ,[metodo_pago] = '" + usuario.tarjeta + ",[contrasena] = '" + usuario.contrasena + " WHERE idUsuario = '"+idUsuario;
+            return "UPDATE [dbo].[Usuario] SET [nombre] = '"+ usuario.nombre + "' ,[correo] = '" + usuario.correo + "' ,[tlf] = '" + usuario.tlf +"' ,[metodo_pago] = '" + usuario.tarjeta + ",[contrasena] = '" + usuario.contrasena + " WHERE idUsuario = '"+idUsuario+"'";
         }
 
         public string deleteUsuarioSQL(int id)
         {
-            return "DELETE FROM [dbo].[Usuario] WHERE idUsuario = ";
+            return "DELETE FROM [dbo].[Usuario] WHERE idUsuario = '" + id + "'";
         }
         // .......................................SQL.........SESION...........................................
         public string inicioSesionSQL (int idUsuario,string contrasena)
         {
-            return "USE [Taxi] INSERT INTO[dbo].[sesion] ([Usuario_idUsuario],[fecha_hora],[contrasena]) VALUES ('" +
-                + idUsuario + "', '" + DateTime.Now + "', '" + contrasena +"');";
+            return "USE [Taxi] INSERT INTO [Taxi].[dbo].[sesion] ([Usuario_idUsuario],[fecha_hora],[contrasena]) VALUES ('" +
+                + idUsuario + "', '" + DateTime.Now + "', '" + contrasena +"')";
         }
 
         public string getSesiones()
@@ -74,9 +74,15 @@ namespace TaxApp.Usuario
             return "SELECT * FROM [Taxi].[dbo].[Sesion] ORDER BY idSesion DESC";
         }
 
+        public string getIdUsuarioSesion(int idSesion)
+        {
+            return "SELECT Usuario_idUsuario FROM [Taxi].[dbo].[Sesion] WHERE idSesion = '" + idSesion + "'";
+        }
+
+
         public string deleteSesionSQL(int idSesion)
         {
-            return "DELETE FROM [dbo].[Sesion] WHERE idSesion = ";
+            return "DELETE FROM [dbo].[Sesion] WHERE idSesion = '" + idSesion + "'";
         }
         //.............................................FUNCIONES DE USUARIO Y SESIONES................................
         public int crearUsuario(string nombre, string correo, string tlf, string tarjeta,string contrasena)

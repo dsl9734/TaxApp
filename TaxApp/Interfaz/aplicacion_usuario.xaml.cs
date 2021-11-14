@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,7 +35,7 @@ namespace TaxApp.Interfaz
             {
                 try
                 {
-                    string query = usuario.deleteUsuarioSQL(usuario.getSesionActual());
+                    string query = usuario.deleteSesionSQL(usuario.getSesionActual());
                     conexion.ejecutaConsulta(query);
 
                     inicio window1 = new inicio();
@@ -72,7 +73,15 @@ namespace TaxApp.Interfaz
             {
                 try
                 {
-                    conexion.ejecutaConsulta(usuario.deleteUsuarioSQL(usuario.getSesionActual()));
+                    int idS = usuario.getSesionActual();
+
+                    string query = usuario.deleteSesionSQL(idS);
+                    conexion.ejecutaConsulta(query);
+
+                    string query1 = usuario.getIdUsuarioSesion(idS);
+                    DataTable data2 = conexion.ejecutaConsultaDataTable(query1);
+                    string query3 = usuario.deleteUsuarioSQL(int.Parse(data2.Rows[0][0].ToString()));
+                    conexion.ejecutaConsulta(query3);
 
                     inicio window1 = new inicio();
                     this.Visibility = Visibility.Hidden;

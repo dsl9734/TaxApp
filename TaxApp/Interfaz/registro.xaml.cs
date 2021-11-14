@@ -45,13 +45,12 @@ namespace TaxApp.Interfaz
             }
             else
             {
-                Usuario.Usuario usuario = new Usuario.Usuario(nombre,email,tlf,tarjeta,Contrasena.Text);
+                Usuario.Usuario usuario = new Usuario.Usuario();
                 Conexion conexion = new Conexion();
                 // Regitro en SQL
                 try
                 {
-                    string query = usuario.crearUsuario(usuario);
-                    conexion.ejecutaConsulta(query);
+                    usuario.crearUsuario(nombre, email, tlf, tarjeta, Contrasena.Text);
                     // Inicio Sesión
                     try
                     {
