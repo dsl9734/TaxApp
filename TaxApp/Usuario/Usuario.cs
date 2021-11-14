@@ -66,7 +66,7 @@ namespace TaxApp.Usuario
         public string inicioSesionSQL (int idUsuario,string contrasena)
         {
             return "USE [Taxi] INSERT INTO[dbo].[sesion] ([Usuario_idUsuario],[fecha_hora],[contrasena]) VALUES ('" +
-                + idUsuario + "', '" + DateTime.Now + "', " + contrasena +"');";
+                + idUsuario + "', '" + DateTime.Now + "', '" + contrasena +"');";
         }
 
         public string getSesiones()
