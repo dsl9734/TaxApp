@@ -12,8 +12,8 @@ namespace TaxApp
     class Conexion
     {
         //public String connS = "server=localhost:3306;user id=root;database=taxi,password=admin";
-        // public String connS = "Data Source=LAPTOP-3JQ7F1RA;Initial Catalog=taxi;Integrated Security=True"; // Portatil HP
-        public String connS = "Data Source=DESKTOP-4EUEAU1;Initial Catalog=taxi;Integrated Security=True"; // Torre Casa
+        public String connS = "Data Source=LAPTOP-3JQ7F1RA;Initial Catalog=taxi;Integrated Security=True"; // Portatil HP
+        //public String connS = "Data Source=DESKTOP-4EUEAU1;Initial Catalog=taxi;Integrated Security=True"; // Torre Casa
         public SqlConnection con;
         public Conexion()
         {
@@ -55,30 +55,26 @@ namespace TaxApp
         public DataTable ejecutaConsultaDataTable(String consulta)
 
         {
-            SqlDataAdapter da = new SqlDataAdapter();
-
             DataTable dt = new DataTable();
-
-            SqlCommand c = new SqlCommand(consulta, con); //Defino la consulta a realizar.
             try
 
             {
-                this.connection();//Abro la conexión
+                using (SqlCommand c = new SqlCommand(consulta, con))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter(c);
+                    // this will query your database and return the result to your datatable
+                    da.Fill(dt);
+                    con.Close();
+                    da.Dispose();
+                }
 
-                da.SelectCommand = c;
-
-                da.Fill(dt); //relleno tabla con el resultado de la consulta
-
-                this.closeConnection();
-
-                return dt;
+                        return dt;
 
             }
 
-            catch //(Exception ex) //Tratamiento de errores en la conexión
+            catch(SqlException ex) //(Exception ex) //Tratamiento de errores en la conexión
 
             {
-
                 this.closeConnection(); //Cierro conexión
 
                 return null;
@@ -96,6 +92,7 @@ namespace TaxApp
 
             {
                 this.connection();//Abro la conexión
+                c.ExecuteNonQuery();
 
                 da.SelectCommand = c;
 

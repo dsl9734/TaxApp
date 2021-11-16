@@ -39,7 +39,7 @@ namespace TaxApp.Usuario
         //...............................................SQL..................USUARIO..........................................
         public string crearUsuario (Usuario usuario)
         {
-            return "USE [Taxi] INSERT INTO[dbo].[usuario]([nombre],[correo],[tlf],[metodo_pago],[contrasena])" +
+            return "USE [Taxi] INSERT INTO [dbo].[usuario]([nombre],[correo],[tlf],[metodo_pago],[contrasena])" +
                 "VALUES('" + usuario.nombre + "','" + usuario.correo + "','" + usuario.tlf + "','" + usuario.tarjeta  + "', '" + usuario.contrasena + "')";
         }
 
@@ -50,7 +50,7 @@ namespace TaxApp.Usuario
 
         public string getIdUsuario(string usuario)
         {
-            return "SELECT * FROM [Taxi].[dbo].[usuario] WHERE nombre = '" + usuario + "'";
+            return "SELECT * FROM [dbo].[usuario] WHERE nombre = '" + usuario + "'";
         }
 
         public string updateUsuarioSQL(Usuario usuario, int idUsuario)
@@ -65,7 +65,7 @@ namespace TaxApp.Usuario
         // .......................................SQL.........SESION...........................................
         public string inicioSesionSQL (int idUsuario,string contrasena)
         {
-            return "USE [Taxi] INSERT INTO [Taxi].[dbo].[sesion] ([Usuario_idUsuario],[fecha_hora],[contrasena]) VALUES ('" +
+            return "USE [Taxi] INSERT INTO [Taxi].[dbo].[sesion]([Usuario_idUsuario],[fecha_hora],[contrasena])VALUES ('" +
                 + idUsuario + "', '" + DateTime.Now + "', '" + contrasena +"')";
         }
 
@@ -112,7 +112,7 @@ namespace TaxApp.Usuario
                 string query1 = this.getIdUsuario(inicioSesion);
                 DataTable dataI = conexion.ejecutaConsultaDataTable(query1);
 
-                if (contrasena == dataI.Rows[0][5].ToString())
+                if (dataI.Rows.Count != 0 && contrasena == dataI.Rows[0][5].ToString())
                 {
                     string query = this.inicioSesionSQL(int.Parse(dataI.Rows[0][0].ToString()), contrasena);
 
