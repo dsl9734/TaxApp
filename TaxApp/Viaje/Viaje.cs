@@ -28,18 +28,18 @@ namespace TaxApp.Viaje
 
         public String getViajesUsuarioSQL(int idUsuario)
         {
-            return "SELECT * FROM [taxi].[dbo].[viaje_taxi] WHERE idUsuario = " + "'"+ idUsuario +"';";
+            return "SELECT * FROM [Taxi].[dbo].[viaje_taxi] WHERE idUsuario = " + "'"+ idUsuario +"';";
         }
 
         public String getViajesTaxiSQL(int idTaxi)
         {
-            return "SELECT * FROM [taxi].[dbo].[viaje_taxi] WHERE idTaxi = " + "'" + idTaxi + "';";
+            return "SELECT * FROM [Taxi].[dbo].[viaje_taxi] WHERE idTaxi = " + "'" + idTaxi + "';";
         }
 
         // Date es Date.Now
         public String postViajeSQL (int idUsuario, int idTaxi, String origen,String destino, String coste)
         {
-            return "INSERT INTO [dbo].[Viaje_Taxi]([Usuario_idUsuario],[Taxi_idTaxi],[fecha_hora],[origen],[destino],[coste]) " +
+            return "USE [Taxi] INSERT INTO [dbo].[Viaje_Taxi]([Usuario_idUsuario],[Taxi_idTaxi],[fecha_hora],[origen],[destino],[coste]) " +
                 "VALUES ('"+idUsuario+"','"+idTaxi+"','"+DateTime.Now+"','"+origen+"','"+destino+"','"+coste+"')";
         }
     }

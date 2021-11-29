@@ -50,17 +50,19 @@ namespace TaxApp.Usuario
 
         public string getIdUsuario(string usuario)
         {
-            return "SELECT * FROM [dbo].[usuario] WHERE nombre = '" + usuario + "'";
+            return "BEGIN TRANSACTION;" +
+                "SELECT idUsuario FROM [Taxi].[dbo].[usuario] WHERE nombre = '" + usuario + "';" +
+                "COMMIT;";
         }
 
         public string updateUsuarioSQL(Usuario usuario, int idUsuario)
         {
-            return "UPDATE [dbo].[Usuario] SET [nombre] = '"+ usuario.nombre + "' ,[correo] = '" + usuario.correo + "' ,[tlf] = '" + usuario.tlf +"' ,[metodo_pago] = '" + usuario.tarjeta + ",[contrasena] = '" + usuario.contrasena + " WHERE idUsuario = '"+idUsuario+"'";
+            return "UPDATE [Taxi].[dbo].[Usuario] SET [nombre] = '"+ usuario.nombre + "' ,[correo] = '" + usuario.correo + "' ,[tlf] = '" + usuario.tlf +"' ,[metodo_pago] = '" + usuario.tarjeta + ",[contrasena] = '" + usuario.contrasena + " WHERE idUsuario = '"+idUsuario+"'";
         }
 
         public string deleteUsuarioSQL(int id)
         {
-            return "DELETE FROM [dbo].[Usuario] WHERE idUsuario = '" + id + "'";
+            return "DELETE FROM [Taxi].[dbo].[Usuario] WHERE idUsuario = '" + id + "'";
         }
         // .......................................SQL.........SESION...........................................
         public string inicioSesionSQL (int idUsuario,string contrasena)
@@ -82,7 +84,7 @@ namespace TaxApp.Usuario
 
         public string deleteSesionSQL(int idSesion)
         {
-            return "DELETE FROM [dbo].[Sesion] WHERE idSesion = '" + idSesion + "'";
+            return "DELETE FROM [Taxi].[dbo].[Sesion] WHERE idSesion = '" + idSesion + "'";
         }
         //.............................................FUNCIONES DE USUARIO Y SESIONES................................
         public int crearUsuario(string nombre, string correo, string tlf, string tarjeta,string contrasena)
