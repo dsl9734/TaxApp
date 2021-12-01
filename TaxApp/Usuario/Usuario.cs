@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace TaxApp.Usuario
         string tlf;
         string tarjeta;
         string contrasena;
+        Conexion con = new Conexion();
 
         public Usuario(string nombre, string correo, string tlf, string tarjeta,string contrasena)
         {
@@ -39,25 +41,31 @@ namespace TaxApp.Usuario
         //...............................................SQL..................USUARIO..........................................
         public string crearUsuario (Usuario usuario)
         {
-            return "USE [Taxi] INSERT INTO [dbo].[usuario]([nombre],[correo],[tlf],[metodo_pago],[contrasena])" +
+            return "USE [Taxi] INSERT INTO [dbo].[Usuario]([nombre],[correo],[tlf],[metodo_pago],[contrasena])" +
                 "VALUES('" + usuario.nombre + "','" + usuario.correo + "','" + usuario.tlf + "','" + usuario.tarjeta  + "', '" + usuario.contrasena + "')";
         }
 
         public string getUsuario (int idUsuario)
         {
-            return "SELECT * FROM [Taxi].[dbo].[usuario] WHERE idUsuario = '" + idUsuario + "'";
+            return "SELECT * FROM [Taxi].[dbo].[Usuario] WHERE idUsuario = '" + idUsuario + "'";
         }
 
         public string getIdUsuario(string usuario)
         {
-            return "BEGIN TRANSACTION;" +
-                "SELECT idUsuario FROM [Taxi].[dbo].[usuario] WHERE nombre = '" + usuario + "';" +
-                "COMMIT;";
+            return "SELECT idUsuario FROM taxi.dbo.Usuario WHERE nombre = @Nombre;";
+        }
+
+        public SqlCommand sqlGetIdUsuario(string idUsuario)
+        {
+            SqlCommand command = new SqlCommand(this.getIdUsuario(idUsuario));
+            //Parametrizar
+            command.Parameters.AddWithValue("@Nombre", idUsuario);
+            return command;
         }
 
         public string updateUsuarioSQL(Usuario usuario, int idUsuario)
         {
-            return "UPDATE [Taxi].[dbo].[Usuario] SET [nombre] = '"+ usuario.nombre + "' ,[correo] = '" + usuario.correo + "' ,[tlf] = '" + usuario.tlf +"' ,[metodo_pago] = '" + usuario.tarjeta + ",[contrasena] = '" + usuario.contrasena + " WHERE idUsuario = '"+idUsuario+"'";
+            return "UPDATE [Taxi].[dbo].Usuario SET [nombre] = '"+ usuario.nombre + "' ,[correo] = '" + usuario.correo + "' ,[tlf] = '" + usuario.tlf +"' ,[metodo_pago] = '" + usuario.tarjeta + ",[contrasena] = '" + usuario.contrasena + " WHERE idUsuario = '"+idUsuario+"'";
         }
 
         public string deleteUsuarioSQL(int id)
@@ -67,7 +75,7 @@ namespace TaxApp.Usuario
         // .......................................SQL.........SESION...........................................
         public string inicioSesionSQL (int idUsuario,string contrasena)
         {
-            return "USE [Taxi] INSERT INTO [Taxi].[dbo].[sesion]([Usuario_idUsuario],[fecha_hora],[contrasena])VALUES ('" +
+            return "USE [Taxi] INSERT INTO [Taxi].[dbo].[Sesion]([Usuario_idUsuario],[fecha_hora],[contrasena])VALUES ('" +
                 + idUsuario + "', '" + DateTime.Now + "', '" + contrasena +"')";
         }
 
@@ -108,17 +116,17 @@ namespace TaxApp.Usuario
 
         public int inicioSesion (string inicioSesion,string contrasena)
         {
-            Conexion conexion = new Conexion();
             try
             {
-                string query1 = this.getIdUsuario(inicioSesion);
-                DataTable dataI = conexion.ejecutaConsultaDataTable(query1);
+                SqlCommand query1 = this.sqlGetIdUsuario(inicioSesion);
+
+                DataTable dataI = con.ejecutaConsultaDataTableCommand(query1);
 
                 if (dataI.Rows.Count != 0 && contrasena == dataI.Rows[0][5].ToString())
                 {
                     string query = this.inicioSesionSQL(int.Parse(dataI.Rows[0][0].ToString()), contrasena);
 
-                    return conexion.ejecutaConsulta(query);
+                    return con.ejecutaConsulta(query);
                 }
                 else
                 {
