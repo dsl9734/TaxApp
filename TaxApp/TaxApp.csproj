@@ -82,14 +82,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DataSet1.cs">
-      <DependentUpon>DataSet1.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="DataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSet1.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Interfaz\aplicacion_admin.xaml.cs">
       <DependentUpon>aplicacion_admin.xaml</DependentUpon>
     </Compile>
@@ -113,6 +105,14 @@
     </Compile>
     <Compile Include="Interfaz\registro.xaml.cs">
       <DependentUpon>registro.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="taxiBDD.cs">
+      <DependentUpon>taxiBDD.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="taxiBDD.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>taxiBDD.xsd</DependentUpon>
     </Compile>
     <Compile Include="Taxi\Taxi.cs" />
     <Compile Include="Usuario\Usuario.cs" />
@@ -182,20 +182,20 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="DataSet1.xsc">
-      <DependentUpon>DataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="DataSet1.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="DataSet1.xss">
-      <DependentUpon>DataSet1.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="taxiBDD.xsc">
+      <DependentUpon>taxiBDD.xsd</DependentUpon>
+    </None>
+    <None Include="taxiBDD.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>taxiBDD.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="taxiBDD.xss">
+      <DependentUpon>taxiBDD.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

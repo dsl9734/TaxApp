@@ -67,7 +67,7 @@ namespace TaxApp
                 this.connection();//Abro la conexión
 
                 da.SelectCommand = c;
-
+                c.ExecuteNonQuery();
                 da.Fill(dt); //relleno tabla con el resultado de la consulta
 
                 this.closeConnection();
@@ -102,8 +102,8 @@ namespace TaxApp
                 this.connection();//Abro la conexión
 
                 da.SelectCommand = c;
-
-               da.Fill(dt); //relleno tabla con el resultado de la consulta
+                c.ExecuteNonQuery();
+                da.Fill(dt); //relleno tabla con el resultado de la consulta
 
                 this.closeConnection();
 

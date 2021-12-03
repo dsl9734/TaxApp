@@ -32,5 +32,15 @@ namespace TaxApp.Properties {
                 return ((string)(this["taxiConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP-3JQ7F1RA;Initial Catalog=taxi;Integrated Security=True")]
+        public string taxiConnection {
+            get {
+                return ((string)(this["taxiConnection"]));
+            }
+        }
     }
 }

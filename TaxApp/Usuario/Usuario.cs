@@ -52,7 +52,7 @@ namespace TaxApp.Usuario
 
         public string getIdUsuario(string usuario)
         {
-            return "SELECT idUsuario FROM taxi.dbo.Usuario WHERE nombre = @Nombre;";
+            return "SELECT idUsuario FROM [taxi].[dbo].[Usuario] WHERE [taxi].[dbo].[Usuario].nombre = '" + usuario + "'";
         }
 
         public SqlCommand sqlGetIdUsuario(string idUsuario)
@@ -118,9 +118,16 @@ namespace TaxApp.Usuario
         {
             try
             {
+                /*
                 SqlCommand query1 = this.sqlGetIdUsuario(inicioSesion);
 
                 DataTable dataI = con.ejecutaConsultaDataTableCommand(query1);
+                */
+                
+
+                string query1 = this.getIdUsuario(inicioSesion);
+
+                DataTable dataI = con.ejecutaConsultaDataTable(query1);
 
                 if (dataI.Rows.Count != 0 && contrasena == dataI.Rows[0][5].ToString())
                 {
