@@ -2366,13 +2366,12 @@ SELECT idUsuario, nombre, correo, tlf, metodo_pago, contrasena FROM Usuario WHER
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_idUsuario", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "idUsuario", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT idUsuario FROM dbo.Usuario WHERE nombre = @nombre";
+            this._commandCollection[2].CommandText = "SELECT * FROM dbo.Usuario WHERE nombre = @nombre";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nombre", global::System.Data.SqlDbType.NVarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, "nombre", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT idUsuario, nombre, correo, tlf, metodo_pago, contrasena FROM dbo.Usuario W" +
-                "HERE nombre = @nombre AND contrasena = @contrasena";
+            this._commandCollection[3].CommandText = "SELECT * FROM dbo.Usuario WHERE nombre = @nombre AND contrasena = @contrasena";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nombre", global::System.Data.SqlDbType.NVarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, "nombre", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@contrasena", global::System.Data.SqlDbType.NVarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, "contrasena", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -2464,7 +2463,7 @@ SELECT idUsuario, nombre, correo, tlf, metodo_pago, contrasena FROM Usuario WHER
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillBy1(taxiBDD.UsuarioDataTable dataTable, string nombre, string contrasena) {
+        public virtual int FillBy2(taxiBDD.UsuarioDataTable dataTable, string nombre, string contrasena) {
             this.Adapter.SelectCommand = this.CommandCollection[3];
             if ((nombre == null)) {
                 throw new global::System.ArgumentNullException("nombre");
@@ -2489,7 +2488,7 @@ SELECT idUsuario, nombre, correo, tlf, metodo_pago, contrasena FROM Usuario WHER
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual taxiBDD.UsuarioDataTable ComprobarInicio(string nombre, string contrasena) {
+        public virtual taxiBDD.UsuarioDataTable ComprobarSesion(string nombre, string contrasena) {
             this.Adapter.SelectCommand = this.CommandCollection[3];
             if ((nombre == null)) {
                 throw new global::System.ArgumentNullException("nombre");
@@ -2977,8 +2976,7 @@ SELECT idUsuario, nombre, correo, tlf, metodo_pago, contrasena FROM Usuario WHER
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_idSesion", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "idSesion", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT Usuario_idUsuario FROM dbo.Sesion WHERE idSesion = @idSesion ORDER BY idSe" +
-                "sion DESC";
+            this._commandCollection[2].CommandText = "SELECT * FROM dbo.Sesion WHERE idSesion = @idSesion ORDER BY idSesion DESC";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idSesion", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "idSesion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();

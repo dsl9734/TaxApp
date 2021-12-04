@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TaxApp.taxiBDDTableAdapters;
+using static TaxApp.taxiBDD;
 
 namespace TaxApp.Interfaz
 {
@@ -43,40 +45,21 @@ namespace TaxApp.Interfaz
         {
             if (usuario != null && contrasena != null)
             {
-                try { int res = us.inicioSesion(usuario,contrasena);
-                    if (res == -1)
-                    {
-                        MessageBox.Show("Error de inicio de sesion. Usuario y/o contraseña son incorrectos.");
-                    }
-                    else
-                    {
-                        if (Usuario.Text != "admin") 
+                try {
+                    int id = us.inicioSesion(usuario, contrasena);
+                    if (id != 1) 
                         {
-                            //Comprobar inicio sesión inicio
-                            taxiBDDTableAdapters.SesionTableAdapter comprobar = new taxiBDDTableAdapters.UsuarioTableAdapter();
-                            comprobar.;
-                            adapter.Connection.Open();
-                            adapter.Connection.BeginTransaction();
-                            adapter.Connection.Close();
-                            //Comprobar inicio sesión fin
-                            // Insertar Sesion Inicio
-                            taxiBDDTableAdapters.SesionTableAdapter adapter = new taxiBDDTableAdapters.SesionTableAdapter();
-                            adapter.InsertSesion(1);
-                            adapter.Connection.Open();
-                            adapter.Connection.BeginTransaction();
-                            adapter.Connection.Close();
-                            // Insertar Sesion Fin
-                            aplicacion_usuario window1 = new aplicacion_usuario();
-                            this.Visibility = Visibility.Hidden;
-                            window1.Show();
-                        }
+                        aplicacion_usuario window1 = new aplicacion_usuario();
+                        this.Visibility = Visibility.Hidden;
+                        window1.Show();
+                    }
                         else
                         {
                             aplicacion_admin window1 = new aplicacion_admin();
                             this.Visibility = Visibility.Hidden;
                             window1.Show();
                         }
-                    }
+                    
                 }
                 catch { MessageBox.Show("Ha ocurrido un error al iniciar sesión."); }
             }

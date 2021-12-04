@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using TaxApp.taxiBDDTableAdapters;
+using static TaxApp.taxiBDD;
 
 namespace TaxApp.Usuario
 {
@@ -118,36 +120,39 @@ namespace TaxApp.Usuario
         {
             try
             {
-                /*
-                SqlCommand query1 = this.sqlGetIdUsuario(inicioSesion);
-
-                DataTable dataI = con.ejecutaConsultaDataTableCommand(query1);
-                */
-                
-
-                string query1 = this.getIdUsuario(inicioSesion);
-
-                DataTable dataI = con.ejecutaConsultaDataTable(query1);
-
-                if (dataI.Rows.Count != 0 && contrasena == dataI.Rows[0][5].ToString())
-                {
-                    string query = this.inicioSesionSQL(int.Parse(dataI.Rows[0][0].ToString()), contrasena);
-
-                    return con.ejecutaConsulta(query);
-                }
-                else
-                {
+                    //Comprobar inicio sesión inicio
+                    UsuarioTableAdapter comprobar = new UsuarioTableAdapter();
+                    comprobar.ComprobarSesion(inicioSesion, contrasena);
+                    comprobar.Connection.Open();
+                    comprobar.Connection.BeginTransaction();
+                    UsuarioDataTable sComprobar = new UsuarioDataTable();
+                    comprobar.Fill(sComprobar);
+                    comprobar.Connection.Close();
+                    //Comprobar inicio sesión fin
+                    int id = int.Parse(sComprobar.idUsuarioColumn.ToString());
+                    if (id > 0)
+                    {
+                        // Insertar Sesion Inicio
+                        SesionTableAdapter adapter = new SesionTableAdapter();
+                        adapter.InsertSesion(id);
+                        adapter.Connection.Open();
+                        adapter.Connection.BeginTransaction();
+                        adapter.Connection.Close();
+                    // Insertar Sesion Fin
+                    return id;
+                    }
+                    else
+                    {
+                    MessageBox.Show("No se ha iniciado sesión correctamente");
                     return -1;
-                }
+                    }
             }
-
-            catch
-            {
-                MessageBox.Show("Se ha producido un error al intentar iniciar sesion;");
+            catch { MessageBox.Show("Ha ocurrido un error al iniciar sesión.");
                 return -1;
             }
-            
-        }
+        
+
+    }
 
         public int getSesionActual()
         {
