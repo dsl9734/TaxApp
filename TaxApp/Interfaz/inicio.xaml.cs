@@ -41,17 +41,31 @@ namespace TaxApp.Interfaz
 
         private void Iniciar_Click(object sender, RoutedEventArgs e)
         {
-            if (usuario != null)
+            if (usuario != null && contrasena != null)
             {
                 try { int res = us.inicioSesion(usuario,contrasena);
                     if (res == -1)
                     {
-                        MessageBox.Show("Error de inicio de sesion.");
+                        MessageBox.Show("Error de inicio de sesion. Usuario y/o contraseña son incorrectos.");
                     }
                     else
                     {
-                        if (Usuario.Text != "admin")
+                        if (Usuario.Text != "admin") 
                         {
+                            //Comprobar inicio sesión inicio
+                            taxiBDDTableAdapters.SesionTableAdapter comprobar = new taxiBDDTableAdapters.UsuarioTableAdapter();
+                            comprobar.;
+                            adapter.Connection.Open();
+                            adapter.Connection.BeginTransaction();
+                            adapter.Connection.Close();
+                            //Comprobar inicio sesión fin
+                            // Insertar Sesion Inicio
+                            taxiBDDTableAdapters.SesionTableAdapter adapter = new taxiBDDTableAdapters.SesionTableAdapter();
+                            adapter.InsertSesion(1);
+                            adapter.Connection.Open();
+                            adapter.Connection.BeginTransaction();
+                            adapter.Connection.Close();
+                            // Insertar Sesion Fin
                             aplicacion_usuario window1 = new aplicacion_usuario();
                             this.Visibility = Visibility.Hidden;
                             window1.Show();
@@ -65,6 +79,10 @@ namespace TaxApp.Interfaz
                     }
                 }
                 catch { MessageBox.Show("Ha ocurrido un error al iniciar sesión."); }
+            }
+            else
+            {
+                MessageBox.Show("Alguna de las credenciales está vacía");
             }
         }
 
