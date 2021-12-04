@@ -121,12 +121,9 @@ namespace TaxApp.Usuario
             try
             {
                     //Comprobar inicio sesión inicio
-                    UsuarioTableAdapter comprobar = new UsuarioTableAdapter();
-                    comprobar.ComprobarSesion(inicioSesion, contrasena);
+                    UsuarioTableAdapter comprobar = new UsuarioTableAdapter();                    
                     comprobar.Connection.Open();
-                    comprobar.Connection.BeginTransaction();
-                    UsuarioDataTable sComprobar = new UsuarioDataTable();
-                    comprobar.Fill(sComprobar);
+                    UsuarioDataTable sComprobar = comprobar.ComprobarSesion(inicioSesion, contrasena);
                     comprobar.Connection.Close();
                     //Comprobar inicio sesión fin
                     int id = int.Parse(sComprobar.idUsuarioColumn.ToString());
@@ -134,9 +131,8 @@ namespace TaxApp.Usuario
                     {
                         // Insertar Sesion Inicio
                         SesionTableAdapter adapter = new SesionTableAdapter();
-                        adapter.InsertSesion(id);
                         adapter.Connection.Open();
-                        adapter.Connection.BeginTransaction();
+                        adapter.InsertSesion(id);
                         adapter.Connection.Close();
                     // Insertar Sesion Fin
                     return id;
