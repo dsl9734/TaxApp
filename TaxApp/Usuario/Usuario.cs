@@ -20,7 +20,7 @@ namespace TaxApp.Usuario
         string contrasena;
         Conexion con = new Conexion();
 
-        public Usuario(string nombre, string correo, string tlf, string tarjeta,string contrasena)
+        public Usuario(string nombre, string correo, string tlf, string tarjeta, string contrasena)
         {
             this.Nombre = nombre;
             this.Correo = correo;
@@ -41,13 +41,13 @@ namespace TaxApp.Usuario
 
 
         //...............................................SQL..................USUARIO..........................................
-        public string crearUsuario (Usuario usuario)
+        public string crearUsuario(Usuario usuario)
         {
             return "USE [Taxi] INSERT INTO [dbo].[Usuario]([nombre],[correo],[tlf],[metodo_pago],[contrasena])" +
-                "VALUES('" + usuario.nombre + "','" + usuario.correo + "','" + usuario.tlf + "','" + usuario.tarjeta  + "', '" + usuario.contrasena + "')";
+                "VALUES('" + usuario.nombre + "','" + usuario.correo + "','" + usuario.tlf + "','" + usuario.tarjeta + "', '" + usuario.contrasena + "')";
         }
 
-        public string getUsuario (int idUsuario)
+        public string getUsuario(int idUsuario)
         {
             return "SELECT * FROM [Taxi].[dbo].[Usuario] WHERE idUsuario = '" + idUsuario + "'";
         }
@@ -57,17 +57,18 @@ namespace TaxApp.Usuario
             return "SELECT idUsuario FROM [taxi].[dbo].[Usuario] WHERE [taxi].[dbo].[Usuario].nombre = '" + usuario + "'";
         }
 
-        public SqlCommand sqlGetIdUsuario(string idUsuario)
+        public SqlCommand sqlGetIdUsuario(string idUsuario,string contrasena)
         {
-            SqlCommand command = new SqlCommand(this.getIdUsuario(idUsuario));
+            SqlCommand command = new SqlCommand("SELECT idUsuario FROM [taxi].[dbo].[Usuario] WHERE [taxi].[dbo].[Usuario].nombre = @Nombre AND [taxi].[dbo].[Usuario].contrasena = @Contrasena");
             //Parametrizar
-            command.Parameters.AddWithValue("@Nombre", idUsuario);
+            command.Parameters.AddWithValue(@Nombre, idUsuario);
+            command.Parameters.AddWithValue(@Contrasena, contrasena);
             return command;
         }
 
         public string updateUsuarioSQL(Usuario usuario, int idUsuario)
         {
-            return "UPDATE [Taxi].[dbo].Usuario SET [nombre] = '"+ usuario.nombre + "' ,[correo] = '" + usuario.correo + "' ,[tlf] = '" + usuario.tlf +"' ,[metodo_pago] = '" + usuario.tarjeta + ",[contrasena] = '" + usuario.contrasena + " WHERE idUsuario = '"+idUsuario+"'";
+            return "UPDATE [Taxi].[dbo].Usuario SET [nombre] = '" + usuario.nombre + "' ,[correo] = '" + usuario.correo + "' ,[tlf] = '" + usuario.tlf + "' ,[metodo_pago] = '" + usuario.tarjeta + ",[contrasena] = '" + usuario.contrasena + " WHERE idUsuario = '" + idUsuario + "'";
         }
 
         public string deleteUsuarioSQL(int id)
@@ -75,10 +76,10 @@ namespace TaxApp.Usuario
             return "DELETE FROM [Taxi].[dbo].[Usuario] WHERE idUsuario = '" + id + "'";
         }
         // .......................................SQL.........SESION...........................................
-        public string inicioSesionSQL (int idUsuario,string contrasena)
+        public string inicioSesionSQL(int idUsuario, string contrasena)
         {
             return "USE [Taxi] INSERT INTO [Taxi].[dbo].[Sesion]([Usuario_idUsuario],[fecha_hora],[contrasena])VALUES ('" +
-                + idUsuario + "', '" + DateTime.Now + "', '" + contrasena +"')";
+                +idUsuario + "', '" + DateTime.Now + "', '" + contrasena + "')";
         }
 
         public string getSesiones()
@@ -97,11 +98,11 @@ namespace TaxApp.Usuario
             return "DELETE FROM [Taxi].[dbo].[Sesion] WHERE idSesion = '" + idSesion + "'";
         }
         //.............................................FUNCIONES DE USUARIO Y SESIONES................................
-        public int crearUsuario(string nombre, string correo, string tlf, string tarjeta,string contrasena)
+        public int crearUsuario(string nombre, string correo, string tlf, string tarjeta, string contrasena)
         {
             Conexion conexion = new Conexion();
 
-            Usuario usuario = new Usuario(nombre, correo, tlf,tarjeta,contrasena);
+            Usuario usuario = new Usuario(nombre, correo, tlf, tarjeta, contrasena);
             try
             {
                 string sqlUsuario = this.crearUsuario(usuario);
@@ -116,39 +117,47 @@ namespace TaxApp.Usuario
             }
         }
 
-        public int inicioSesion (string inicioSesion,string contrasena)
+        public int inicioSesion(string inicioSesion, string contrasena)
         {
             try
             {
-                    //Comprobar inicio sesión inicio
-                    UsuarioTableAdapter comprobar = new UsuarioTableAdapter();                    
-                    comprobar.Connection.Open();
-                    UsuarioDataTable sComprobar = comprobar.ComprobarSesion(inicioSesion, contrasena);
-                    comprobar.Connection.Close();
-                    //Comprobar inicio sesión fin
-                    int id = int.Parse(sComprobar.idUsuarioColumn.ToString());
-                    if (id > 0)
-                    {
-                        // Insertar Sesion Inicio
-                        SesionTableAdapter adapter = new SesionTableAdapter();
-                        adapter.Connection.Open();
-                        adapter.InsertSesion(id);
-                        adapter.Connection.Close();
+                //Comprobar inicio sesión inicio
+                UsuarioTableAdapter comprobar = new UsuarioTableAdapter();
+                comprobar.Connection.Open(); 
+                UsuarioDataTable sComprobar = comprobar.ComprobarSesion(inicioSesion, contrasena);
+                comprobar.Transaction = comprobar.Connection.BeginTransaction();
+                comprobar.Transaction.Commit();
+                comprobar.FillBy2(sComprobar,inicioSesion,contrasena);
+                comprobar.Connection.Close();
+                //Comprobar inicio sesión fin
+                int id = int.Parse(sComprobar.idUsuarioColumn.ToString());
+                if (id > 0)
+                {
+                    // Insertar Sesion Inicio
+                    SesionTableAdapter adapter = new SesionTableAdapter();
+                    adapter.Connection.Open();
+                    comprobar.Transaction = adapter.Connection.BeginTransaction();
+                    adapter.InsertSesion(id);
+                    adapter.Transaction.Commit();
+                    adapter.Connection.Close();
                     // Insertar Sesion Fin
                     return id;
-                    }
-                    else
-                    {
+                }
+                else
+                {
                     MessageBox.Show("No se ha iniciado sesión correctamente");
+                    comprobar.Transaction.Rollback();
                     return -1;
-                    }
+                }
             }
-            catch { MessageBox.Show("Ha ocurrido un error al iniciar sesión.");
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
                 return -1;
             }
-        
 
-    }
+
+        }
 
         public int getSesionActual()
         {
