@@ -47,9 +47,9 @@ namespace TaxApp
                     con.Close();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -139,7 +139,6 @@ namespace TaxApp
                 this.closeConnection();
 
                 return 0;
-
             }
 
             catch //(Exception ex) //Tratamiento de errores en la conexión

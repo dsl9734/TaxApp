@@ -59,10 +59,12 @@ namespace TaxApp.Usuario
 
         public SqlCommand sqlGetIdUsuario(string idUsuario,string contrasena)
         {
-            SqlCommand command = new SqlCommand("SELECT idUsuario FROM [taxi].[dbo].[Usuario] WHERE [taxi].[dbo].[Usuario].nombre = @Nombre AND [taxi].[dbo].[Usuario].contrasena = @Contrasena");
+            SqlCommand command = new SqlCommand(@"SELECT idUsuario, nombre, correo, tlf, metodo_pago, contrasena
+                                                FROM     Usuario
+                                                WHERE  (nombre = @nombre) AND (contrasena = @contrasena)");
             //Parametrizar
-            command.Parameters.AddWithValue(@Nombre, idUsuario);
-            command.Parameters.AddWithValue(@Contrasena, contrasena);
+            command.Parameters.AddWithValue(@nombre, idUsuario);
+            command.Parameters.AddWithValue(@contrasena, contrasena);
             return command;
         }
 
@@ -120,25 +122,22 @@ namespace TaxApp.Usuario
         public int inicioSesion(string inicioSesion, string contrasena)
         {
             try
-            {
+            {   
                 //Comprobar inicio sesión inicio
                 UsuarioTableAdapter comprobar = new UsuarioTableAdapter();
-                comprobar.Connection.Open(); 
+                con.connection();
+                
                 UsuarioDataTable sComprobar = comprobar.ComprobarSesion(inicioSesion, contrasena);
-                comprobar.Transaction = comprobar.Connection.BeginTransaction();
-                comprobar.Transaction.Commit();
-                comprobar.FillBy2(sComprobar,inicioSesion,contrasena);
-                comprobar.Connection.Close();
+                int i = comprobar.FillBy2(sComprobar, inicioSesion, contrasena);
+                con.closeConnection();
                 //Comprobar inicio sesión fin
-                int id = int.Parse(sComprobar.idUsuarioColumn.ToString());
+                int id = int.Parse(sComprobar.Rows[0][0].ToString());
                 if (id > 0)
                 {
                     // Insertar Sesion Inicio
                     SesionTableAdapter adapter = new SesionTableAdapter();
                     adapter.Connection.Open();
-                    comprobar.Transaction = adapter.Connection.BeginTransaction();
                     adapter.InsertSesion(id);
-                    adapter.Transaction.Commit();
                     adapter.Connection.Close();
                     // Insertar Sesion Fin
                     return id;
