@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TaxApp.taxiBDDTableAdapters;
 
 namespace TaxApp.Interfaz.App_Usuario
 {
@@ -52,7 +53,7 @@ namespace TaxApp.Interfaz.App_Usuario
         private void TextBox_Movil(object sender, TextChangedEventArgs e)
         {
             TextBox txt = (TextBox)sender;
-            nombre = Nombre.Text;
+            tlf = TlfMovil.Text;
         }
 
         private void Button_Aceptar(object sender, RoutedEventArgs e)
@@ -61,8 +62,17 @@ namespace TaxApp.Interfaz.App_Usuario
             Usuario.Usuario usuario = new Usuario.Usuario(nombre,email,tlf,tarjeta,contrasena);
             try
             {
-                string sql2 = usuario.updateUsuarioSQL(usuario, usuario.getSesionActual());
-                conexion.ejecutaConsulta(sql2);
+                SesionTableAdapter sesion = new SesionTableAdapter();
+                sesion.Connection.Open();
+                taxiBDD.SesionDataTable dataS = sesion.GetSesionActual();
+                sesion.Connection.Close();
+                int idS = int.Parse(dataS.Rows[0][1].ToString());
+
+                UsuarioTableAdapter user = new UsuarioTableAdapter();
+                user.Connection.Open();
+                int num = user.UpdateUsuario(nombre,email,tlf,tarjeta,contrasena,idS);
+                user.Connection.Close();
+
                 MessageBox.Show("Se han modificado los datos correctamente.");
                 aplicacion_usuario window1 = new aplicacion_usuario();
                 this.Visibility = Visibility.Hidden;
@@ -75,6 +85,12 @@ namespace TaxApp.Interfaz.App_Usuario
             }
         }
 
+        private void TextBox_Contrasena(object sender, TextChangedEventArgs e)
+        {
+            TextBox txt = (TextBox)sender;
+            contrasena = Contrasena.Text;
+        }
+
         private void Button_Cancelar(object sender, RoutedEventArgs e)
         {
             aplicacion_usuario window1 = new aplicacion_usuario();
@@ -85,19 +101,19 @@ namespace TaxApp.Interfaz.App_Usuario
         private void TextBox_Tarjeta(object sender, TextChangedEventArgs e)
         {
             TextBox txt = (TextBox)sender;
-            email = Email.Text;
+            tarjeta = NºTarjeta.Text;
         }
 
         private void TextBox_EMail(object sender, TextChangedEventArgs e)
         {
             TextBox txt = (TextBox)sender;
-            tlf = TlfMovil.Text;
+            email = Email.Text;
         }
 
         private void TextBox_NombreDeUsuario(object sender, TextChangedEventArgs e)
         {
             TextBox txt = (TextBox)sender;
-            tarjeta = NºTarjeta.Text;
+            nombre = Nombre.Text;
         }
     }
 }

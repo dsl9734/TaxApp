@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TaxApp.taxiBDDTableAdapters;
 
 namespace TaxApp.Interfaz
 {
@@ -73,16 +74,21 @@ namespace TaxApp.Interfaz
             {
                 try
                 {
-                    int idS = usuario.getSesionActual();
+                    SesionTableAdapter sesion = new SesionTableAdapter();
+                    sesion.Connection.Open();
+                    taxiBDD.SesionDataTable dataS = sesion.GetSesionActual();
+                    
+                    int idS = int.Parse(dataS.Rows[0][1].ToString());
+                    //sesion.DeleteSesion(idS);
+                    sesion.Connection.Close();
+                    
 
-                    string query = usuario.deleteSesionSQL(idS);
-                    conexion.ejecutaConsulta(query);
+                    UsuarioTableAdapter user = new UsuarioTableAdapter();
+                    user.Connection.Open();
+                    user.DeleteQuery(idS);
+                    user.Connection.Close();
 
-                    string query1 = usuario.getIdUsuarioSesion(idS);
-                    DataTable data2 = conexion.ejecutaConsultaDataTable(query1);
-                    string query3 = usuario.deleteUsuarioSQL(int.Parse(data2.Rows[0][0].ToString()));
-                    conexion.ejecutaConsulta(query3);
-
+                    // Revisar
                     inicio window1 = new inicio();
                     this.Visibility = Visibility.Hidden;
                     window1.Show();

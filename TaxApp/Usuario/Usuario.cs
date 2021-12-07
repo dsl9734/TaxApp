@@ -160,16 +160,18 @@ namespace TaxApp.Usuario
 
         public int getSesionActual()
         {
-            Conexion conexion = new Conexion();
-            string sql1 = this.getSesiones();
+            SesionTableAdapter sesion = new SesionTableAdapter();
             try
             {
-                DataTable dataSesion = conexion.ejecutaConsultaDataTable(sql1);
-                return int.Parse(dataSesion.Rows[0][0].ToString());
+                sesion.Connection.Open();
+                SesionDataTable data = sesion.GetSesionActual();
+                sesion.Connection.Close();
+
+                return int.Parse(data.Rows[0][0].ToString());
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Error interno en sesion");
+                MessageBox.Show(ex.Message);
                 return -1;
             }
         }

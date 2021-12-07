@@ -17,7 +17,7 @@
         <TextBox x:Name="TlfMovil" MaxLength="16"  HorizontalAlignment="Left" Height="30" Margin="232,222,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="481" FontSize="16" TextChanged="TextBox_Movil" AutomationProperties.Name ="Introduzca su Teléfono Móvil" Text=""/>
         <TextBox x:Name="NºTarjeta" HorizontalAlignment="Left" Height="30" Margin="232,281,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="481" FontSize="16" TextChanged="TextBox_Tarjeta" AutomationProperties.Name ="Introduzca su Nº de Tarjeta"/>
         <TextBox x:Name="Email" HorizontalAlignment="Left" Height="30" Margin="232,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="481" FontSize="16" TextChanged="TextBox_EMail" AutomationProperties.Name ="Introduzca su E-mail"/>
-        <TextBox x:Name="Contrasena" HorizontalAlignment="Left" Height="30" Margin="232,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="481" FontSize="16" TextChanged="TextBox_NombreDeUsuario" AutomationProperties.Name ="Introduzca su Nombre de Usuario"/>
+        <TextBox x:Name="Contrasena" HorizontalAlignment="Left" Height="30" Margin="232,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="481" FontSize="16" TextChanged="TextBox_Contrasena" AutomationProperties.Name ="Introduzca su Nombre de Usuario"/>
         <Label Content="Contrasena" HorizontalAlignment="Left" Height="29" Margin="45,115,0,0" VerticalAlignment="Top" Width="187"/>
     </Grid>
 </Window>
