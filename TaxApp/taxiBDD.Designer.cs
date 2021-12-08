@@ -1039,9 +1039,9 @@ namespace TaxApp {
             
             private global::System.Data.DataColumn columnestado;
             
-            private global::System.Data.DataColumn columnubicacion;
+            private global::System.Data.DataColumn columnlongitud_actual;
             
-            private global::System.Data.DataColumn columndestino;
+            private global::System.Data.DataColumn columnlatitud_actual;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -1094,17 +1094,17 @@ namespace TaxApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn ubicacionColumn {
+            public global::System.Data.DataColumn longitud_actualColumn {
                 get {
-                    return this.columnubicacion;
+                    return this.columnlongitud_actual;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn destinoColumn {
+            public global::System.Data.DataColumn latitud_actualColumn {
                 get {
-                    return this.columndestino;
+                    return this.columnlatitud_actual;
                 }
             }
             
@@ -1145,13 +1145,13 @@ namespace TaxApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public TaxiRow AddTaxiRow(string estado, string ubicacion, string destino) {
+            public TaxiRow AddTaxiRow(string estado, string longitud_actual, string latitud_actual) {
                 TaxiRow rowTaxiRow = ((TaxiRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         estado,
-                        ubicacion,
-                        destino};
+                        longitud_actual,
+                        latitud_actual};
                 rowTaxiRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTaxiRow);
                 return rowTaxiRow;
@@ -1183,8 +1183,8 @@ namespace TaxApp {
             internal void InitVars() {
                 this.columnidTaxi = base.Columns["idTaxi"];
                 this.columnestado = base.Columns["estado"];
-                this.columnubicacion = base.Columns["ubicacion"];
-                this.columndestino = base.Columns["destino"];
+                this.columnlongitud_actual = base.Columns["longitud_actual"];
+                this.columnlatitud_actual = base.Columns["latitud_actual"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1194,10 +1194,10 @@ namespace TaxApp {
                 base.Columns.Add(this.columnidTaxi);
                 this.columnestado = new global::System.Data.DataColumn("estado", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnestado);
-                this.columnubicacion = new global::System.Data.DataColumn("ubicacion", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnubicacion);
-                this.columndestino = new global::System.Data.DataColumn("destino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columndestino);
+                this.columnlongitud_actual = new global::System.Data.DataColumn("longitud_actual", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnlongitud_actual);
+                this.columnlatitud_actual = new global::System.Data.DataColumn("latitud_actual", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnlatitud_actual);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnidTaxi}, true));
                 this.columnidTaxi.AutoIncrement = true;
@@ -1208,9 +1208,10 @@ namespace TaxApp {
                 this.columnidTaxi.Unique = true;
                 this.columnestado.AllowDBNull = false;
                 this.columnestado.MaxLength = 50;
-                this.columnubicacion.AllowDBNull = false;
-                this.columnubicacion.MaxLength = 50;
-                this.columndestino.MaxLength = 50;
+                this.columnlongitud_actual.AllowDBNull = false;
+                this.columnlongitud_actual.MaxLength = 50;
+                this.columnlatitud_actual.AllowDBNull = false;
+                this.columnlatitud_actual.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1352,9 +1353,13 @@ namespace TaxApp {
             
             private global::System.Data.DataColumn columnfecha_hora;
             
-            private global::System.Data.DataColumn columnorigen;
+            private global::System.Data.DataColumn columnlatitud_origen;
             
-            private global::System.Data.DataColumn columndestino;
+            private global::System.Data.DataColumn columnlongitud_origen;
+            
+            private global::System.Data.DataColumn columnlatitud_destino;
+            
+            private global::System.Data.DataColumn columnlongitud_destino;
             
             private global::System.Data.DataColumn columncoste;
             
@@ -1425,17 +1430,33 @@ namespace TaxApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn origenColumn {
+            public global::System.Data.DataColumn latitud_origenColumn {
                 get {
-                    return this.columnorigen;
+                    return this.columnlatitud_origen;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn destinoColumn {
+            public global::System.Data.DataColumn longitud_origenColumn {
                 get {
-                    return this.columndestino;
+                    return this.columnlongitud_origen;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn latitud_destinoColumn {
+                get {
+                    return this.columnlatitud_destino;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn longitud_destinoColumn {
+                get {
+                    return this.columnlongitud_destino;
                 }
             }
             
@@ -1484,15 +1505,17 @@ namespace TaxApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public Viaje_TaxiRow AddViaje_TaxiRow(UsuarioRow parentUsuarioRowByFK_Viaje_Taxi_Usuario, int Taxi_idTaxi, System.DateTime fecha_hora, string origen, string destino, string coste) {
+            public Viaje_TaxiRow AddViaje_TaxiRow(UsuarioRow parentUsuarioRowByFK_Viaje_Taxi_Usuario, int Taxi_idTaxi, System.DateTime fecha_hora, string latitud_origen, string longitud_origen, string latitud_destino, string longitud_destino, string coste) {
                 Viaje_TaxiRow rowViaje_TaxiRow = ((Viaje_TaxiRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         null,
                         Taxi_idTaxi,
                         fecha_hora,
-                        origen,
-                        destino,
+                        latitud_origen,
+                        longitud_origen,
+                        latitud_destino,
+                        longitud_destino,
                         coste};
                 if ((parentUsuarioRowByFK_Viaje_Taxi_Usuario != null)) {
                     columnValuesArray[1] = parentUsuarioRowByFK_Viaje_Taxi_Usuario[0];
@@ -1530,8 +1553,10 @@ namespace TaxApp {
                 this.columnUsuario_idUsuario = base.Columns["Usuario_idUsuario"];
                 this.columnTaxi_idTaxi = base.Columns["Taxi_idTaxi"];
                 this.columnfecha_hora = base.Columns["fecha_hora"];
-                this.columnorigen = base.Columns["origen"];
-                this.columndestino = base.Columns["destino"];
+                this.columnlatitud_origen = base.Columns["latitud_origen"];
+                this.columnlongitud_origen = base.Columns["longitud_origen"];
+                this.columnlatitud_destino = base.Columns["latitud_destino"];
+                this.columnlongitud_destino = base.Columns["longitud_destino"];
                 this.columncoste = base.Columns["coste"];
             }
             
@@ -1546,10 +1571,14 @@ namespace TaxApp {
                 base.Columns.Add(this.columnTaxi_idTaxi);
                 this.columnfecha_hora = new global::System.Data.DataColumn("fecha_hora", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnfecha_hora);
-                this.columnorigen = new global::System.Data.DataColumn("origen", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnorigen);
-                this.columndestino = new global::System.Data.DataColumn("destino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columndestino);
+                this.columnlatitud_origen = new global::System.Data.DataColumn("latitud_origen", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnlatitud_origen);
+                this.columnlongitud_origen = new global::System.Data.DataColumn("longitud_origen", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnlongitud_origen);
+                this.columnlatitud_destino = new global::System.Data.DataColumn("latitud_destino", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnlatitud_destino);
+                this.columnlongitud_destino = new global::System.Data.DataColumn("longitud_destino", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnlongitud_destino);
                 this.columncoste = new global::System.Data.DataColumn("coste", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncoste);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
@@ -1563,10 +1592,14 @@ namespace TaxApp {
                 this.columnUsuario_idUsuario.AllowDBNull = false;
                 this.columnTaxi_idTaxi.AllowDBNull = false;
                 this.columnfecha_hora.AllowDBNull = false;
-                this.columnorigen.AllowDBNull = false;
-                this.columnorigen.MaxLength = 50;
-                this.columndestino.AllowDBNull = false;
-                this.columndestino.MaxLength = 50;
+                this.columnlatitud_origen.AllowDBNull = false;
+                this.columnlatitud_origen.MaxLength = 50;
+                this.columnlongitud_origen.AllowDBNull = false;
+                this.columnlongitud_origen.MaxLength = 50;
+                this.columnlatitud_destino.AllowDBNull = false;
+                this.columnlatitud_destino.MaxLength = 50;
+                this.columnlongitud_destino.AllowDBNull = false;
+                this.columnlongitud_destino.MaxLength = 50;
                 this.columncoste.AllowDBNull = false;
                 this.columncoste.MaxLength = 50;
             }
@@ -1884,41 +1917,24 @@ namespace TaxApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string ubicacion {
+            public string longitud_actual {
                 get {
-                    return ((string)(this[this.tableTaxi.ubicacionColumn]));
+                    return ((string)(this[this.tableTaxi.longitud_actualColumn]));
                 }
                 set {
-                    this[this.tableTaxi.ubicacionColumn] = value;
+                    this[this.tableTaxi.longitud_actualColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string destino {
+            public string latitud_actual {
                 get {
-                    try {
-                        return ((string)(this[this.tableTaxi.destinoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'destino\' de la tabla \'Taxi\' es DBNull.", e);
-                    }
+                    return ((string)(this[this.tableTaxi.latitud_actualColumn]));
                 }
                 set {
-                    this[this.tableTaxi.destinoColumn] = value;
+                    this[this.tableTaxi.latitud_actualColumn] = value;
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsdestinoNull() {
-                return this.IsNull(this.tableTaxi.destinoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetdestinoNull() {
-                this[this.tableTaxi.destinoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1993,23 +2009,45 @@ namespace TaxApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string origen {
+            public string latitud_origen {
                 get {
-                    return ((string)(this[this.tableViaje_Taxi.origenColumn]));
+                    return ((string)(this[this.tableViaje_Taxi.latitud_origenColumn]));
                 }
                 set {
-                    this[this.tableViaje_Taxi.origenColumn] = value;
+                    this[this.tableViaje_Taxi.latitud_origenColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string destino {
+            public string longitud_origen {
                 get {
-                    return ((string)(this[this.tableViaje_Taxi.destinoColumn]));
+                    return ((string)(this[this.tableViaje_Taxi.longitud_origenColumn]));
                 }
                 set {
-                    this[this.tableViaje_Taxi.destinoColumn] = value;
+                    this[this.tableViaje_Taxi.longitud_origenColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string latitud_destino {
+                get {
+                    return ((string)(this[this.tableViaje_Taxi.latitud_destinoColumn]));
+                }
+                set {
+                    this[this.tableViaje_Taxi.latitud_destinoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string longitud_destino {
+                get {
+                    return ((string)(this[this.tableViaje_Taxi.longitud_destinoColumn]));
+                }
+                set {
+                    this[this.tableViaje_Taxi.longitud_destinoColumn] = value;
                 }
             }
             
@@ -3314,42 +3352,40 @@ SELECT idUsuario, nombre, correo, tlf, metodo_pago, contrasena FROM Usuario WHER
             tableMapping.DataSetTable = "Taxi";
             tableMapping.ColumnMappings.Add("idTaxi", "idTaxi");
             tableMapping.ColumnMappings.Add("estado", "estado");
-            tableMapping.ColumnMappings.Add("ubicacion", "ubicacion");
-            tableMapping.ColumnMappings.Add("destino", "destino");
+            tableMapping.ColumnMappings.Add("longitud_actual", "longitud_actual");
+            tableMapping.ColumnMappings.Add("latitud_actual", "latitud_actual");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
             this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Taxi] WHERE (([idTaxi] = @Original_idTaxi) AND ([estado] = @Or" +
-                "iginal_estado) AND ([ubicacion] = @Original_ubicacion) AND ((@IsNull_destino = 1" +
-                " AND [destino] IS NULL) OR ([destino] = @Original_destino)))";
+                "iginal_estado) AND ([longitud_actual] = @Original_longitud_actual) AND ([latitud" +
+                "_actual] = @Original_latitud_actual))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_idTaxi", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "idTaxi", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_estado", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "estado", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ubicacion", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ubicacion", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_destino", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "destino", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_destino", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "destino", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_estado", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "estado", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_longitud_actual", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "longitud_actual", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_latitud_actual", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "latitud_actual", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Taxi] ([estado], [ubicacion], [destino]) VALUES (@estado, @ubi" +
-                "cacion, @destino);\r\nSELECT idTaxi, estado, ubicacion, destino FROM Taxi WHERE (i" +
-                "dTaxi = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Taxi] ([estado], [longitud_actual], [latitud_actual]) VALUES (" +
+                "@estado, @longitud_actual, @latitud_actual);\r\nSELECT idTaxi, estado, longitud_ac" +
+                "tual, latitud_actual FROM Taxi WHERE (idTaxi = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@estado", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "estado", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ubicacion", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ubicacion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@destino", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "destino", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@estado", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "estado", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@longitud_actual", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "longitud_actual", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@latitud_actual", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "latitud_actual", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Taxi] SET [estado] = @estado, [ubicacion] = @ubicacion, [destino] = @destino WHERE (([idTaxi] = @Original_idTaxi) AND ([estado] = @Original_estado) AND ([ubicacion] = @Original_ubicacion) AND ((@IsNull_destino = 1 AND [destino] IS NULL) OR ([destino] = @Original_destino)));
-SELECT idTaxi, estado, ubicacion, destino FROM Taxi WHERE (idTaxi = @idTaxi)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Taxi] SET [estado] = @estado, [longitud_actual] = @longitud_actual, [latitud_actual] = @latitud_actual WHERE (([idTaxi] = @Original_idTaxi) AND ([estado] = @Original_estado) AND ([longitud_actual] = @Original_longitud_actual) AND ([latitud_actual] = @Original_latitud_actual));
+SELECT idTaxi, estado, longitud_actual, latitud_actual FROM Taxi WHERE (idTaxi = @idTaxi)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@estado", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "estado", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ubicacion", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ubicacion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@destino", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "destino", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@estado", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "estado", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@longitud_actual", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "longitud_actual", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@latitud_actual", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "latitud_actual", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_idTaxi", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "idTaxi", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_estado", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "estado", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ubicacion", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ubicacion", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_destino", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "destino", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_destino", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "destino", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_estado", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "estado", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_longitud_actual", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "longitud_actual", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_latitud_actual", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "latitud_actual", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idTaxi", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "idTaxi", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -3366,22 +3402,22 @@ SELECT idTaxi, estado, ubicacion, destino FROM Taxi WHERE (idTaxi = @idTaxi)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT idTaxi, estado, ubicacion, destino FROM dbo.Taxi";
+            this._commandCollection[0].CommandText = "SELECT idTaxi, estado, longitud_actual, latitud_actual FROM dbo.Taxi";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT * FROM dbo.Taxi WHERE idTaxi = @idTaxi";
+            this._commandCollection[1].CommandText = "UPDATE Taxi\r\nSET          longitud_actual = @longitud_actual, latitud_actual = @l" +
+                "atitud_actual\r\nWHERE  (idTaxi = @Original_idTaxi) ";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idTaxi", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "idTaxi", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@longitud_actual", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "longitud_actual", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@latitud_actual", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "latitud_actual", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_idTaxi", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "idTaxi", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "INSERT INTO [dbo].[Taxi] ([estado], [ubicacion], [destino]) VALUES (@estado, @ubi" +
-                "cacion, @destino);\r\nSELECT idTaxi, estado, ubicacion, destino FROM Taxi WHERE (i" +
-                "dTaxi = SCOPE_IDENTITY())";
+            this._commandCollection[2].CommandText = "UPDATE Taxi\r\nSET          estado = @estado\r\nWHERE  (idTaxi = @Original_idTaxi); ";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@estado", global::System.Data.SqlDbType.NChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "estado", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ubicacion", global::System.Data.SqlDbType.NChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "ubicacion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@destino", global::System.Data.SqlDbType.NChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "destino", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@estado", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "estado", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_idTaxi", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "idTaxi", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3403,32 +3439,6 @@ SELECT idTaxi, estado, ubicacion, destino FROM Taxi WHERE (idTaxi = @idTaxi)";
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual taxiBDD.TaxiDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            taxiBDD.TaxiDataTable dataTable = new taxiBDD.TaxiDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillBy(taxiBDD.TaxiDataTable dataTable, int idTaxi) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(idTaxi));
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual taxiBDD.TaxiDataTable GetTaxi(int idTaxi) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(idTaxi));
             taxiBDD.TaxiDataTable dataTable = new taxiBDD.TaxiDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -3467,7 +3477,7 @@ SELECT idTaxi, estado, ubicacion, destino FROM Taxi WHERE (idTaxi = @idTaxi)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_idTaxi, string Original_estado, string Original_ubicacion, string Original_destino) {
+        public virtual int Delete(int Original_idTaxi, string Original_estado, string Original_longitud_actual, string Original_latitud_actual) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_idTaxi));
             if ((Original_estado == null)) {
                 throw new global::System.ArgumentNullException("Original_estado");
@@ -3475,19 +3485,17 @@ SELECT idTaxi, estado, ubicacion, destino FROM Taxi WHERE (idTaxi = @idTaxi)";
             else {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_estado));
             }
-            if ((Original_ubicacion == null)) {
-                throw new global::System.ArgumentNullException("Original_ubicacion");
+            if ((Original_longitud_actual == null)) {
+                throw new global::System.ArgumentNullException("Original_longitud_actual");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_ubicacion));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_longitud_actual));
             }
-            if ((Original_destino == null)) {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
+            if ((Original_latitud_actual == null)) {
+                throw new global::System.ArgumentNullException("Original_latitud_actual");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_destino));
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_latitud_actual));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -3509,24 +3517,24 @@ SELECT idTaxi, estado, ubicacion, destino FROM Taxi WHERE (idTaxi = @idTaxi)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string estado, string ubicacion, string destino) {
+        public virtual int Insert(string estado, string longitud_actual, string latitud_actual) {
             if ((estado == null)) {
                 throw new global::System.ArgumentNullException("estado");
             }
             else {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(estado));
             }
-            if ((ubicacion == null)) {
-                throw new global::System.ArgumentNullException("ubicacion");
+            if ((longitud_actual == null)) {
+                throw new global::System.ArgumentNullException("longitud_actual");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(ubicacion));
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(longitud_actual));
             }
-            if ((destino == null)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            if ((latitud_actual == null)) {
+                throw new global::System.ArgumentNullException("latitud_actual");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(destino));
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(latitud_actual));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -3548,24 +3556,24 @@ SELECT idTaxi, estado, ubicacion, destino FROM Taxi WHERE (idTaxi = @idTaxi)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string estado, string ubicacion, string destino, int Original_idTaxi, string Original_estado, string Original_ubicacion, string Original_destino, int idTaxi) {
+        public virtual int Update(string estado, string longitud_actual, string latitud_actual, int Original_idTaxi, string Original_estado, string Original_longitud_actual, string Original_latitud_actual, int idTaxi) {
             if ((estado == null)) {
                 throw new global::System.ArgumentNullException("estado");
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(estado));
             }
-            if ((ubicacion == null)) {
-                throw new global::System.ArgumentNullException("ubicacion");
+            if ((longitud_actual == null)) {
+                throw new global::System.ArgumentNullException("longitud_actual");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(ubicacion));
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(longitud_actual));
             }
-            if ((destino == null)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
+            if ((latitud_actual == null)) {
+                throw new global::System.ArgumentNullException("latitud_actual");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(destino));
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(latitud_actual));
             }
             this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_idTaxi));
             if ((Original_estado == null)) {
@@ -3574,21 +3582,19 @@ SELECT idTaxi, estado, ubicacion, destino FROM Taxi WHERE (idTaxi = @idTaxi)";
             else {
                 this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_estado));
             }
-            if ((Original_ubicacion == null)) {
-                throw new global::System.ArgumentNullException("Original_ubicacion");
+            if ((Original_longitud_actual == null)) {
+                throw new global::System.ArgumentNullException("Original_longitud_actual");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_ubicacion));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_longitud_actual));
             }
-            if ((Original_destino == null)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+            if ((Original_latitud_actual == null)) {
+                throw new global::System.ArgumentNullException("Original_latitud_actual");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_destino));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_latitud_actual));
             }
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(idTaxi));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(idTaxi));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3609,15 +3615,51 @@ SELECT idTaxi, estado, ubicacion, destino FROM Taxi WHERE (idTaxi = @idTaxi)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string estado, string ubicacion, string destino, int Original_idTaxi, string Original_estado, string Original_ubicacion, string Original_destino) {
-            return this.Update(estado, ubicacion, destino, Original_idTaxi, Original_estado, Original_ubicacion, Original_destino, Original_idTaxi);
+        public virtual int Update(string estado, string longitud_actual, string latitud_actual, int Original_idTaxi, string Original_estado, string Original_longitud_actual, string Original_latitud_actual) {
+            return this.Update(estado, longitud_actual, latitud_actual, Original_idTaxi, Original_estado, Original_longitud_actual, Original_latitud_actual, Original_idTaxi);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual int InsertTaxi(string estado, string ubicacion, string destino) {
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
+        public virtual int UpdateCoordenadas(string longitud_actual, string latitud_actual, int Original_idTaxi) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
+            if ((longitud_actual == null)) {
+                throw new global::System.ArgumentNullException("longitud_actual");
+            }
+            else {
+                command.Parameters[0].Value = ((string)(longitud_actual));
+            }
+            if ((latitud_actual == null)) {
+                throw new global::System.ArgumentNullException("latitud_actual");
+            }
+            else {
+                command.Parameters[1].Value = ((string)(latitud_actual));
+            }
+            command.Parameters[2].Value = ((int)(Original_idTaxi));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
+        public virtual int UpdateEstado(string estado, int Original_idTaxi) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
             if ((estado == null)) {
                 throw new global::System.ArgumentNullException("estado");
@@ -3625,18 +3667,7 @@ SELECT idTaxi, estado, ubicacion, destino FROM Taxi WHERE (idTaxi = @idTaxi)";
             else {
                 command.Parameters[0].Value = ((string)(estado));
             }
-            if ((ubicacion == null)) {
-                throw new global::System.ArgumentNullException("ubicacion");
-            }
-            else {
-                command.Parameters[1].Value = ((string)(ubicacion));
-            }
-            if ((destino == null)) {
-                command.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                command.Parameters[2].Value = ((string)(destino));
-            }
+            command.Parameters[1].Value = ((int)(Original_idTaxi));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3780,50 +3811,60 @@ SELECT idTaxi, estado, ubicacion, destino FROM Taxi WHERE (idTaxi = @idTaxi)";
             tableMapping.ColumnMappings.Add("Usuario_idUsuario", "Usuario_idUsuario");
             tableMapping.ColumnMappings.Add("Taxi_idTaxi", "Taxi_idTaxi");
             tableMapping.ColumnMappings.Add("fecha_hora", "fecha_hora");
-            tableMapping.ColumnMappings.Add("origen", "origen");
-            tableMapping.ColumnMappings.Add("destino", "destino");
+            tableMapping.ColumnMappings.Add("latitud_origen", "latitud_origen");
+            tableMapping.ColumnMappings.Add("longitud_origen", "longitud_origen");
+            tableMapping.ColumnMappings.Add("latitud_destino", "latitud_destino");
+            tableMapping.ColumnMappings.Add("longitud_destino", "longitud_destino");
             tableMapping.ColumnMappings.Add("coste", "coste");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Viaje_Taxi] WHERE (([idViaje_Taxi] = @Original_idViaje_Taxi) AND ([Usuario_idUsuario] = @Original_Usuario_idUsuario) AND ([Taxi_idTaxi] = @Original_Taxi_idTaxi) AND ([fecha_hora] = @Original_fecha_hora) AND ([origen] = @Original_origen) AND ([destino] = @Original_destino) AND ([coste] = @Original_coste))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Viaje_Taxi] WHERE (([idViaje_Taxi] = @Original_idViaje_Taxi) AND ([Usuario_idUsuario] = @Original_Usuario_idUsuario) AND ([Taxi_idTaxi] = @Original_Taxi_idTaxi) AND ([fecha_hora] = @Original_fecha_hora) AND ([latitud_origen] = @Original_latitud_origen) AND ([longitud_origen] = @Original_longitud_origen) AND ([latitud_destino] = @Original_latitud_destino) AND ([longitud_destino] = @Original_longitud_destino) AND ([coste] = @Original_coste))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_idViaje_Taxi", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "idViaje_Taxi", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Usuario_idUsuario", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Usuario_idUsuario", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Taxi_idTaxi", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Taxi_idTaxi", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_fecha_hora", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fecha_hora", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_origen", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "origen", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_destino", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "destino", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_coste", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "coste", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_latitud_origen", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "latitud_origen", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_longitud_origen", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "longitud_origen", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_latitud_destino", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "latitud_destino", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_longitud_destino", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "longitud_destino", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_coste", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "coste", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Viaje_Taxi] ([Usuario_idUsuario], [Taxi_idTaxi], [fecha_hora], [origen], [destino], [coste]) VALUES (@Usuario_idUsuario, @Taxi_idTaxi, @fecha_hora, @origen, @destino, @coste);
-SELECT idViaje_Taxi, Usuario_idUsuario, Taxi_idTaxi, fecha_hora, origen, destino, coste FROM Viaje_Taxi WHERE (idViaje_Taxi = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Viaje_Taxi] ([Usuario_idUsuario], [Taxi_idTaxi], [fecha_hora], [latitud_origen], [longitud_origen], [latitud_destino], [longitud_destino], [coste]) VALUES (@Usuario_idUsuario, @Taxi_idTaxi, @fecha_hora, @latitud_origen, @longitud_origen, @latitud_destino, @longitud_destino, @coste);
+SELECT idViaje_Taxi, Usuario_idUsuario, Taxi_idTaxi, fecha_hora, latitud_origen, longitud_origen, latitud_destino, longitud_destino, coste FROM Viaje_Taxi WHERE (idViaje_Taxi = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Usuario_idUsuario", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Usuario_idUsuario", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Taxi_idTaxi", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Taxi_idTaxi", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fecha_hora", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fecha_hora", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@origen", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "origen", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@destino", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "destino", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@coste", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "coste", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@latitud_origen", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "latitud_origen", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@longitud_origen", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "longitud_origen", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@latitud_destino", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "latitud_destino", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@longitud_destino", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "longitud_destino", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@coste", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "coste", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Viaje_Taxi] SET [Usuario_idUsuario] = @Usuario_idUsuario, [Taxi_idTaxi] = @Taxi_idTaxi, [fecha_hora] = @fecha_hora, [origen] = @origen, [destino] = @destino, [coste] = @coste WHERE (([idViaje_Taxi] = @Original_idViaje_Taxi) AND ([Usuario_idUsuario] = @Original_Usuario_idUsuario) AND ([Taxi_idTaxi] = @Original_Taxi_idTaxi) AND ([fecha_hora] = @Original_fecha_hora) AND ([origen] = @Original_origen) AND ([destino] = @Original_destino) AND ([coste] = @Original_coste));
-SELECT idViaje_Taxi, Usuario_idUsuario, Taxi_idTaxi, fecha_hora, origen, destino, coste FROM Viaje_Taxi WHERE (idViaje_Taxi = @idViaje_Taxi)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Viaje_Taxi] SET [Usuario_idUsuario] = @Usuario_idUsuario, [Taxi_idTaxi] = @Taxi_idTaxi, [fecha_hora] = @fecha_hora, [latitud_origen] = @latitud_origen, [longitud_origen] = @longitud_origen, [latitud_destino] = @latitud_destino, [longitud_destino] = @longitud_destino, [coste] = @coste WHERE (([idViaje_Taxi] = @Original_idViaje_Taxi) AND ([Usuario_idUsuario] = @Original_Usuario_idUsuario) AND ([Taxi_idTaxi] = @Original_Taxi_idTaxi) AND ([fecha_hora] = @Original_fecha_hora) AND ([latitud_origen] = @Original_latitud_origen) AND ([longitud_origen] = @Original_longitud_origen) AND ([latitud_destino] = @Original_latitud_destino) AND ([longitud_destino] = @Original_longitud_destino) AND ([coste] = @Original_coste));
+SELECT idViaje_Taxi, Usuario_idUsuario, Taxi_idTaxi, fecha_hora, latitud_origen, longitud_origen, latitud_destino, longitud_destino, coste FROM Viaje_Taxi WHERE (idViaje_Taxi = @idViaje_Taxi)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Usuario_idUsuario", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Usuario_idUsuario", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Taxi_idTaxi", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Taxi_idTaxi", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fecha_hora", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fecha_hora", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@origen", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "origen", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@destino", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "destino", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@coste", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "coste", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@latitud_origen", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "latitud_origen", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@longitud_origen", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "longitud_origen", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@latitud_destino", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "latitud_destino", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@longitud_destino", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "longitud_destino", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@coste", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "coste", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_idViaje_Taxi", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "idViaje_Taxi", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Usuario_idUsuario", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Usuario_idUsuario", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Taxi_idTaxi", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Taxi_idTaxi", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_fecha_hora", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fecha_hora", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_origen", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "origen", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_destino", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "destino", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_coste", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "coste", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_latitud_origen", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "latitud_origen", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_longitud_origen", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "longitud_origen", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_latitud_destino", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "latitud_destino", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_longitud_destino", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "longitud_destino", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_coste", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "coste", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idViaje_Taxi", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "idViaje_Taxi", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -3837,12 +3878,24 @@ SELECT idViaje_Taxi, Usuario_idUsuario, Taxi_idTaxi, fecha_hora, origen, destino
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT idViaje_Taxi, Usuario_idUsuario, Taxi_idTaxi, fecha_hora, origen, destino," +
-                " coste FROM dbo.Viaje_Taxi";
+            this._commandCollection[0].CommandText = "SELECT idViaje_Taxi, Usuario_idUsuario, Taxi_idTaxi, fecha_hora, latitud_origen, " +
+                "longitud_origen, latitud_destino, longitud_destino, coste FROM dbo.Viaje_Taxi";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = @"INSERT INTO [dbo].[Viaje_Taxi] ([Usuario_idUsuario], [Taxi_idTaxi], [fecha_hora], [latitud_origen], [longitud_origen], [latitud_destino], [longitud_destino], [coste]) VALUES (@Usuario_idUsuario, @Taxi_idTaxi, @fecha_hora, @latitud_origen, @longitud_origen, @latitud_destino, @longitud_destino, @coste);";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Usuario_idUsuario", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Usuario_idUsuario", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Taxi_idTaxi", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Taxi_idTaxi", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fecha_hora", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "fecha_hora", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@latitud_origen", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "latitud_origen", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@longitud_origen", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "longitud_origen", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@latitud_destino", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "latitud_destino", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@longitud_destino", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "longitud_destino", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@coste", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "coste", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3902,28 +3955,40 @@ SELECT idViaje_Taxi, Usuario_idUsuario, Taxi_idTaxi, fecha_hora, origen, destino
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_idViaje_Taxi, int Original_Usuario_idUsuario, int Original_Taxi_idTaxi, System.DateTime Original_fecha_hora, string Original_origen, string Original_destino, string Original_coste) {
+        public virtual int Delete(int Original_idViaje_Taxi, int Original_Usuario_idUsuario, int Original_Taxi_idTaxi, System.DateTime Original_fecha_hora, string Original_latitud_origen, string Original_longitud_origen, string Original_latitud_destino, string Original_longitud_destino, string Original_coste) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_idViaje_Taxi));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_Usuario_idUsuario));
             this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_Taxi_idTaxi));
             this.Adapter.DeleteCommand.Parameters[3].Value = ((System.DateTime)(Original_fecha_hora));
-            if ((Original_origen == null)) {
-                throw new global::System.ArgumentNullException("Original_origen");
+            if ((Original_latitud_origen == null)) {
+                throw new global::System.ArgumentNullException("Original_latitud_origen");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_origen));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_latitud_origen));
             }
-            if ((Original_destino == null)) {
-                throw new global::System.ArgumentNullException("Original_destino");
+            if ((Original_longitud_origen == null)) {
+                throw new global::System.ArgumentNullException("Original_longitud_origen");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((string)(Original_destino));
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((string)(Original_longitud_origen));
+            }
+            if ((Original_latitud_destino == null)) {
+                throw new global::System.ArgumentNullException("Original_latitud_destino");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_latitud_destino));
+            }
+            if ((Original_longitud_destino == null)) {
+                throw new global::System.ArgumentNullException("Original_longitud_destino");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((string)(Original_longitud_destino));
             }
             if ((Original_coste == null)) {
                 throw new global::System.ArgumentNullException("Original_coste");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_coste));
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_coste));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -3945,27 +4010,39 @@ SELECT idViaje_Taxi, Usuario_idUsuario, Taxi_idTaxi, fecha_hora, origen, destino
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int Usuario_idUsuario, int Taxi_idTaxi, System.DateTime fecha_hora, string origen, string destino, string coste) {
+        public virtual int Insert(int Usuario_idUsuario, int Taxi_idTaxi, System.DateTime fecha_hora, string latitud_origen, string longitud_origen, string latitud_destino, string longitud_destino, string coste) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(Usuario_idUsuario));
             this.Adapter.InsertCommand.Parameters[1].Value = ((int)(Taxi_idTaxi));
             this.Adapter.InsertCommand.Parameters[2].Value = ((System.DateTime)(fecha_hora));
-            if ((origen == null)) {
-                throw new global::System.ArgumentNullException("origen");
+            if ((latitud_origen == null)) {
+                throw new global::System.ArgumentNullException("latitud_origen");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(origen));
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(latitud_origen));
             }
-            if ((destino == null)) {
-                throw new global::System.ArgumentNullException("destino");
+            if ((longitud_origen == null)) {
+                throw new global::System.ArgumentNullException("longitud_origen");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(destino));
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(longitud_origen));
+            }
+            if ((latitud_destino == null)) {
+                throw new global::System.ArgumentNullException("latitud_destino");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(latitud_destino));
+            }
+            if ((longitud_destino == null)) {
+                throw new global::System.ArgumentNullException("longitud_destino");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(longitud_destino));
             }
             if ((coste == null)) {
                 throw new global::System.ArgumentNullException("coste");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(coste));
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(coste));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -3987,51 +4064,93 @@ SELECT idViaje_Taxi, Usuario_idUsuario, Taxi_idTaxi, fecha_hora, origen, destino
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int Usuario_idUsuario, int Taxi_idTaxi, System.DateTime fecha_hora, string origen, string destino, string coste, int Original_idViaje_Taxi, int Original_Usuario_idUsuario, int Original_Taxi_idTaxi, System.DateTime Original_fecha_hora, string Original_origen, string Original_destino, string Original_coste, int idViaje_Taxi) {
+        public virtual int Update(
+                    int Usuario_idUsuario, 
+                    int Taxi_idTaxi, 
+                    System.DateTime fecha_hora, 
+                    string latitud_origen, 
+                    string longitud_origen, 
+                    string latitud_destino, 
+                    string longitud_destino, 
+                    string coste, 
+                    int Original_idViaje_Taxi, 
+                    int Original_Usuario_idUsuario, 
+                    int Original_Taxi_idTaxi, 
+                    System.DateTime Original_fecha_hora, 
+                    string Original_latitud_origen, 
+                    string Original_longitud_origen, 
+                    string Original_latitud_destino, 
+                    string Original_longitud_destino, 
+                    string Original_coste, 
+                    int idViaje_Taxi) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(Usuario_idUsuario));
             this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(Taxi_idTaxi));
             this.Adapter.UpdateCommand.Parameters[2].Value = ((System.DateTime)(fecha_hora));
-            if ((origen == null)) {
-                throw new global::System.ArgumentNullException("origen");
+            if ((latitud_origen == null)) {
+                throw new global::System.ArgumentNullException("latitud_origen");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(origen));
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(latitud_origen));
             }
-            if ((destino == null)) {
-                throw new global::System.ArgumentNullException("destino");
+            if ((longitud_origen == null)) {
+                throw new global::System.ArgumentNullException("longitud_origen");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(destino));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(longitud_origen));
+            }
+            if ((latitud_destino == null)) {
+                throw new global::System.ArgumentNullException("latitud_destino");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(latitud_destino));
+            }
+            if ((longitud_destino == null)) {
+                throw new global::System.ArgumentNullException("longitud_destino");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(longitud_destino));
             }
             if ((coste == null)) {
                 throw new global::System.ArgumentNullException("coste");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(coste));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(coste));
             }
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_idViaje_Taxi));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_Usuario_idUsuario));
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_Taxi_idTaxi));
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((System.DateTime)(Original_fecha_hora));
-            if ((Original_origen == null)) {
-                throw new global::System.ArgumentNullException("Original_origen");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_origen));
-            }
-            if ((Original_destino == null)) {
-                throw new global::System.ArgumentNullException("Original_destino");
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_idViaje_Taxi));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_Usuario_idUsuario));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_Taxi_idTaxi));
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((System.DateTime)(Original_fecha_hora));
+            if ((Original_latitud_origen == null)) {
+                throw new global::System.ArgumentNullException("Original_latitud_origen");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_destino));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_latitud_origen));
+            }
+            if ((Original_longitud_origen == null)) {
+                throw new global::System.ArgumentNullException("Original_longitud_origen");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_longitud_origen));
+            }
+            if ((Original_latitud_destino == null)) {
+                throw new global::System.ArgumentNullException("Original_latitud_destino");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_latitud_destino));
+            }
+            if ((Original_longitud_destino == null)) {
+                throw new global::System.ArgumentNullException("Original_longitud_destino");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_longitud_destino));
             }
             if ((Original_coste == null)) {
                 throw new global::System.ArgumentNullException("Original_coste");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_coste));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_coste));
             }
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(idViaje_Taxi));
+            this.Adapter.UpdateCommand.Parameters[17].Value = ((int)(idViaje_Taxi));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4052,8 +4171,81 @@ SELECT idViaje_Taxi, Usuario_idUsuario, Taxi_idTaxi, fecha_hora, origen, destino
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int Usuario_idUsuario, int Taxi_idTaxi, System.DateTime fecha_hora, string origen, string destino, string coste, int Original_idViaje_Taxi, int Original_Usuario_idUsuario, int Original_Taxi_idTaxi, System.DateTime Original_fecha_hora, string Original_origen, string Original_destino, string Original_coste) {
-            return this.Update(Usuario_idUsuario, Taxi_idTaxi, fecha_hora, origen, destino, coste, Original_idViaje_Taxi, Original_Usuario_idUsuario, Original_Taxi_idTaxi, Original_fecha_hora, Original_origen, Original_destino, Original_coste, Original_idViaje_Taxi);
+        public virtual int Update(
+                    int Usuario_idUsuario, 
+                    int Taxi_idTaxi, 
+                    System.DateTime fecha_hora, 
+                    string latitud_origen, 
+                    string longitud_origen, 
+                    string latitud_destino, 
+                    string longitud_destino, 
+                    string coste, 
+                    int Original_idViaje_Taxi, 
+                    int Original_Usuario_idUsuario, 
+                    int Original_Taxi_idTaxi, 
+                    System.DateTime Original_fecha_hora, 
+                    string Original_latitud_origen, 
+                    string Original_longitud_origen, 
+                    string Original_latitud_destino, 
+                    string Original_longitud_destino, 
+                    string Original_coste) {
+            return this.Update(Usuario_idUsuario, Taxi_idTaxi, fecha_hora, latitud_origen, longitud_origen, latitud_destino, longitud_destino, coste, Original_idViaje_Taxi, Original_Usuario_idUsuario, Original_Taxi_idTaxi, Original_fecha_hora, Original_latitud_origen, Original_longitud_origen, Original_latitud_destino, Original_longitud_destino, Original_coste, Original_idViaje_Taxi);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
+        public virtual int InsertViaje(int Usuario_idUsuario, int Taxi_idTaxi, System.DateTime fecha_hora, string latitud_origen, string longitud_origen, string latitud_destino, string longitud_destino, string coste) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
+            command.Parameters[0].Value = ((int)(Usuario_idUsuario));
+            command.Parameters[1].Value = ((int)(Taxi_idTaxi));
+            command.Parameters[2].Value = ((System.DateTime)(fecha_hora));
+            if ((latitud_origen == null)) {
+                throw new global::System.ArgumentNullException("latitud_origen");
+            }
+            else {
+                command.Parameters[3].Value = ((string)(latitud_origen));
+            }
+            if ((longitud_origen == null)) {
+                throw new global::System.ArgumentNullException("longitud_origen");
+            }
+            else {
+                command.Parameters[4].Value = ((string)(longitud_origen));
+            }
+            if ((latitud_destino == null)) {
+                throw new global::System.ArgumentNullException("latitud_destino");
+            }
+            else {
+                command.Parameters[5].Value = ((string)(latitud_destino));
+            }
+            if ((longitud_destino == null)) {
+                throw new global::System.ArgumentNullException("longitud_destino");
+            }
+            else {
+                command.Parameters[6].Value = ((string)(longitud_destino));
+            }
+            if ((coste == null)) {
+                throw new global::System.ArgumentNullException("coste");
+            }
+            else {
+                command.Parameters[7].Value = ((string)(coste));
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
         }
     }
     

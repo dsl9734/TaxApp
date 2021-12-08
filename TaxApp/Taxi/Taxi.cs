@@ -10,68 +10,55 @@ namespace TaxApp.Taxi
 {
     class Taxi
     {
-        string estado;
-        string ubicacion;
-        string destino;
-
-        public Taxi(string estado, string ubicacion, string destino)
-        {
-            this.estado = estado;
-            this.ubicacion = ubicacion;
-            this.destino = destino;
-        }
+        string estado, latitud, longitud;
 
         public Taxi()
         {
         }
 
+        public Taxi(string estado, string latitud, string longitud)
+        {
+            this.Estado = estado;
+            this.Latitud = latitud;
+            this.Longitud = longitud;
+        }
+
         public string Estado { get => estado; set => estado = value; }
-        public string Ubicacion { get => ubicacion; set => ubicacion = value; }
-        public string Destino { get => destino; set => destino = value; }
+        public string Latitud { get => latitud; set => latitud = value; }
+        public string Longitud { get => longitud; set => longitud = value; }
 
-
-        //.................................................SQL TAXI.........................................
-        public string crearTaxi(Taxi taxi)
+        public void CambiarEstado (string estado, int id)
         {
-            return "USE [Taxi] INSERT INTO[dbo].[taxi]([estado],[ubicacion],[destino])" +
-                "VALUES('" + taxi.estado + "','" + taxi.ubicacion + "','" + taxi.destino + "');";
-        }
-
-        public string getTaxi(int idTaxi)
-        {
-            return "SELECT * FROM [taxi].[dbo].[usuario] WHERE idUsuario = " + idTaxi + ";";
-        }
-
-        public string getTaxis()
-        {
-            return "SELECT * FROM [taxi].[dbo].[taxi];";
-        }
-
-        public string setTaxi(Taxi taxi, int idTaxi)
-        {
-            return "USE [taxi] UPDATE [dbo].[taxi] SET [estado] = '" + taxi.estado + "',[ubicacion] = '" + taxi.ubicacion + "',[destino] = '" + taxi.destino + "' WHERE idTaxi = " + idTaxi;
-        }
-
-
-        //.......................................FUNCIONES TAXI....................................................
-        public Taxi sqlTaxi(DataTable dataU)
-        {
-            Conexion conexion = new Conexion();
-            Taxi taxi = new Taxi();
             try
             {
-                DataRow fila = dataU.Rows[0];
-                taxi.estado = fila[0].ToString();
-                taxi.ubicacion = fila[1].ToString();
-                taxi.destino = fila[2].ToString();
-                return taxi;
+                taxiBDDTableAdapters.TaxiTableAdapter adapter = new taxiBDDTableAdapters.TaxiTableAdapter();
+                adapter.Connection.Open();
+                adapter.UpdateEstado(estado, id);
+                adapter.Connection.Close();
             }
-
-            catch
+            
+            catch (Exception ex)
             {
-                MessageBox.Show("Se ha producido un error al recuperar los datos de la Base de Datos");
-                return null;
+                MessageBox.Show(ex.Message);
             }
         }
+
+        public void CambiarCoordenadas (Point nuevo, int id)
+        {
+            try
+            {
+                taxiBDDTableAdapters.TaxiTableAdapter adapter = new taxiBDDTableAdapters.TaxiTableAdapter();
+                adapter.Connection.Open();
+                adapter.UpdateCoordenadas(nuevo.X.ToString(),nuevo.Y.ToString(), id);
+                adapter.Connection.Close();
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
     }
 }
