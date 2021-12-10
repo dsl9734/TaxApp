@@ -167,7 +167,7 @@ namespace TaxApp.Usuario
                 SesionDataTable data = sesion.GetSesionActual();
                 sesion.Connection.Close();
 
-                return int.Parse(data.Rows[0][0].ToString());
+                return int.Parse(data.Rows[0][1].ToString());
             }
             catch (Exception ex)
             {

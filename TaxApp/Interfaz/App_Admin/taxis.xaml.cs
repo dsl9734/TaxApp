@@ -34,7 +34,7 @@ namespace TaxApp.Interfaz.App_Admin
         {
             Conexion conexion = new Conexion();
             Taxi.Taxi taxi = new Taxi.Taxi();
-            DataTable data = conexion.ejecutaConsultaDataTable(taxi.getTaxis());
+            //DataTable data = conexion.ejecutaConsultaDataTable(taxi.getTaxis());
 
             // Introducir datos en Data Grid
             

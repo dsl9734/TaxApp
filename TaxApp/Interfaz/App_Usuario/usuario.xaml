@@ -8,7 +8,6 @@
         mc:Ignorable="d"
         Title="usuario" Height="450" Width="800">
     <Grid>
-
         <dxm:MapControl x:Name="Mapa" HorizontalAlignment="Left" Margin="0,10,-0.4,0" VerticalAlignment="Top" Height="410" Width="794" Cursor="Hand" MouseDoubleClick="Posición" MouseRightButtonDown="Destino" Loaded="E_Loaded" RenderTransformOrigin="0.471,0.634">
             <dxm:MapControl.CenterPoint>
                 <dxm:GeoPoint Longitude="11" Latitude="63"/>

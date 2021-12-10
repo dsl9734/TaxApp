@@ -47,7 +47,7 @@ namespace TaxApp.Viaje
                 if (distance == 0 && data.Rows[i][1].ToString() == "disponible" || n < distance && data.Rows[i][1].ToString() == "disponible")
                 {
                     distance = n;
-                    id = i;
+                    id = int.Parse(data.Rows[i][0].ToString());
                 }
             }
 

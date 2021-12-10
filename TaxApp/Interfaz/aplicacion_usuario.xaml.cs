@@ -36,8 +36,10 @@ namespace TaxApp.Interfaz
             {
                 try
                 {
-                    string query = usuario.deleteSesionSQL(usuario.getSesionActual());
-                    conexion.ejecutaConsulta(query);
+                    SesionTableAdapter adapter = new SesionTableAdapter();
+                    adapter.Connection.Open();
+                    adapter.DeleteSesion(usuario.getSesionActual());
+                    adapter.Connection.Close();
 
                     inicio window1 = new inicio();
                     this.Visibility = Visibility.Hidden;

@@ -28,7 +28,7 @@ namespace TaxApp
         private void Inicio_Click(object sender, RoutedEventArgs e)
         {
             Interfaz.inicio window1 = new Interfaz.inicio();
-            this.Visibility = Visibility.Hidden;
+            Visibility = Visibility.Hidden;
             window1.Show();
         }
     }
