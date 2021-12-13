@@ -128,11 +128,21 @@ namespace TaxApp.Interfaz.App_Usuario
                     // adapter.UpdateCoordenadas(mousePointD.X.ToString(), mousePointD.Y.ToString(), idTaxi);
                     adapter.Connection.Close();
 
+                    //Esto está para probar funcionamiento
+                    TaxiTableAdapter adapterTS = new TaxiTableAdapter();
+                    adapterTS.Connection.Open();
+                    adapterTS.UpdateEstado("disponible", idTaxi);
+                    adapterTS.UpdateCoordenadas(mousePointD.X.ToString(), mousePointD.Y.ToString(), idTaxi);
+                    adapterTS.Connection.Close();
+
+
+                    // Arreglar esta parte
+                    /*
                     // Introducir temporizador
                     double distanciaKMTaxi = DistanciaViajeKM(mousePointO, mousePointD);
                     // Si velocidad media = 40 km/h
                     double tiempoMIL = HorasAMilisec(distanciaKMTaxi / 40);
-                    TemporizadorAsync(mousePointD, idTaxi, tiempoMIL);
+                    TemporizadorAsync(mousePointD, idTaxi, tiempoMIL);*/
 
                     // Itroducir envío a email
 

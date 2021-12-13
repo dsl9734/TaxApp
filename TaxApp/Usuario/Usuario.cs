@@ -175,9 +175,26 @@ namespace TaxApp.Usuario
                 return -1;
             }
         }
+
+        public Boolean NombreSinUsar(string nombre)
+        {
+            Boolean cierto = false;
+            try
+            {
+                UsuarioTableAdapter us = new UsuarioTableAdapter();
+                us.Connection.Open();
+                cierto = us.GetIdUsuario(nombre).Rows.Count == 0;
+                us.Connection.Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return cierto;
+        }
         // Convertir Datos Sql en objetos
 
-        public Usuario sqlUsuario(DataTable dataU)
+        public Usuario sqlUsuario(UsuarioDataTable dataU)
         {
             Conexion conexion = new Conexion();
             Usuario usuario = new Usuario();

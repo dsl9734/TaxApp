@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 namespace TaxApp.Interfaz
 {
@@ -34,18 +35,32 @@ namespace TaxApp.Interfaz
 
         private void Button_Aceptar(object sender, RoutedEventArgs e)
         {
+            Usuario.Usuario usuario = new Usuario.Usuario();
             // Comprobaciones de datos
             if (nombre == "admin")
             {
                 MessageBox.Show("No se puede crear un usuario administrador");
             }
-            else if (tlf.Length != 9)
+            else if (tlf.Length != 9 && IsNumeric(tlf))
             {
-                MessageBox.Show("El número de teléfono no tiene 9 números");
+                MessageBox.Show("El número de teléfono no tiene 9 números.");
+            }
+            else if (!email_bien_escrito(email))
+            {
+                MessageBox.Show("Por favor introduce un email válido.");
+            }
+            
+            else if (tarjeta.Length != 16 || !IsNumeric(NºTarjeta.Text))
+            {
+                MessageBox.Show("Por favor introduce un número de tarjeta correcto de 12 números.");
+            }
+            else if (!usuario.NombreSinUsar(nombre))
+            {
+                MessageBox.Show("Nombre de usuario ya está en uso.");
             }
             else
             {
-                Usuario.Usuario usuario = new Usuario.Usuario();
+                
                 Conexion conexion = new Conexion();
                 // Regitro en SQL
                 try
@@ -84,6 +99,7 @@ namespace TaxApp.Interfaz
         {
             TextBox txt = (TextBox)sender;
             tarjeta = NºTarjeta.Text;
+           
         }
 
         private void TextBox_EMail(object sender, TextChangedEventArgs e)
@@ -96,6 +112,32 @@ namespace TaxApp.Interfaz
         {
             TextBox txt = (TextBox)sender;
             nombre = Nombre.Text;
+        }
+        private Boolean email_bien_escrito(String email)
+        {
+            String expresion;
+            expresion = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
+            if (Regex.IsMatch(email, expresion))
+            {
+                if (Regex.Replace(email, expresion, String.Empty).Length == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool IsNumeric(string text) {
+            double _out;
+            Boolean res = double.TryParse(text, out _out);
+            return res;
         }
     }
 }
