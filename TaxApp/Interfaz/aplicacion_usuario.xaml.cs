@@ -21,7 +21,6 @@ namespace TaxApp.Interfaz
     /// </summary>
     public partial class aplicacion_usuario : Window
     {
-        Conexion conexion = new Conexion();
         Usuario.Usuario usuario = new Usuario.Usuario();
 
         public aplicacion_usuario()

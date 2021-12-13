@@ -35,7 +35,6 @@ namespace TaxApp.Interfaz.App_Admin
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // Introducir datos en Data Grid
-            Conexion conexion = new Conexion();
             TaxiTableAdapter adapter = new TaxiTableAdapter();
             adapter.Connection.Open();
             TaxiDataTable data = adapter.GetData();

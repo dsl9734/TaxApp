@@ -39,76 +39,20 @@ namespace TaxApp.Usuario
         public string Tarjeta { get => tarjeta; set => tarjeta = value; }
         public string Contrasena { get => contrasena; set => contrasena = value; }
 
-
-        //...............................................SQL..................USUARIO..........................................
-        public string crearUsuario(Usuario usuario)
-        {
-            return "USE [Taxi] INSERT INTO [dbo].[Usuario]([nombre],[correo],[tlf],[metodo_pago],[contrasena])" +
-                "VALUES('" + usuario.nombre + "','" + usuario.correo + "','" + usuario.tlf + "','" + usuario.tarjeta + "', '" + usuario.contrasena + "')";
-        }
-
-        public string getUsuario(int idUsuario)
-        {
-            return "SELECT * FROM [Taxi].[dbo].[Usuario] WHERE idUsuario = '" + idUsuario + "'";
-        }
-
-        public string getIdUsuario(string usuario)
-        {
-            return "SELECT idUsuario FROM [taxi].[dbo].[Usuario] WHERE [taxi].[dbo].[Usuario].nombre = '" + usuario + "'";
-        }
-
-        public SqlCommand sqlGetIdUsuario(string idUsuario,string contrasena)
-        {
-            SqlCommand command = new SqlCommand(@"SELECT idUsuario, nombre, correo, tlf, metodo_pago, contrasena
-                                                FROM     Usuario
-                                                WHERE  (nombre = @nombre) AND (contrasena = @contrasena)");
-            //Parametrizar
-            command.Parameters.AddWithValue(@nombre, idUsuario);
-            command.Parameters.AddWithValue(@contrasena, contrasena);
-            return command;
-        }
-
-        public string updateUsuarioSQL(Usuario usuario, int idUsuario)
-        {
-            return "UPDATE [Taxi].[dbo].Usuario SET [nombre] = '" + usuario.nombre + "' ,[correo] = '" + usuario.correo + "' ,[tlf] = '" + usuario.tlf + "' ,[metodo_pago] = '" + usuario.tarjeta + ",[contrasena] = '" + usuario.contrasena + " WHERE idUsuario = '" + idUsuario + "'";
-        }
-
         public string deleteUsuarioSQL(int id)
         {
             return "DELETE FROM [Taxi].[dbo].[Usuario] WHERE idUsuario = '" + id + "'";
         }
-        // .......................................SQL.........SESION...........................................
-        public string inicioSesionSQL(int idUsuario, string contrasena)
-        {
-            return "USE [Taxi] INSERT INTO [Taxi].[dbo].[Sesion]([Usuario_idUsuario],[fecha_hora],[contrasena])VALUES ('" +
-                +idUsuario + "', '" + DateTime.Now + "', '" + contrasena + "')";
-        }
-
-        public string getSesiones()
-        {
-            return "SELECT * FROM [Taxi].[dbo].[Sesion] ORDER BY idSesion DESC";
-        }
-
-        public string getIdUsuarioSesion(int idSesion)
-        {
-            return "SELECT Usuario_idUsuario FROM [Taxi].[dbo].[Sesion] WHERE idSesion = '" + idSesion + "'";
-        }
-
-
-        public string deleteSesionSQL(int idSesion)
-        {
-            return "DELETE FROM [Taxi].[dbo].[Sesion] WHERE idSesion = '" + idSesion + "'";
-        }
+       
         //.............................................FUNCIONES DE USUARIO Y SESIONES................................
         public int crearUsuario(string nombre, string correo, string tlf, string tarjeta, string contrasena)
         {
-            Conexion conexion = new Conexion();
-
-            Usuario usuario = new Usuario(nombre, correo, tlf, tarjeta, contrasena);
             try
             {
-                string sqlUsuario = this.crearUsuario(usuario);
-                DataTable dataU = conexion.ejecutaConsultaDataTable(sqlUsuario);
+                UsuarioTableAdapter adapter = new UsuarioTableAdapter();
+                adapter.Connection.Open();
+                adapter.InsertUsuario(nombre, correo, tlf, tarjeta, contrasena);
+                adapter.Connection.Close();
                 return 0;
             }
 

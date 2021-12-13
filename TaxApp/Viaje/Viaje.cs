@@ -15,18 +15,6 @@ namespace TaxApp.Viaje
 
         public Viaje() { }
 
-        public Viaje(int idUsuario, int idTaxi, DateTime fechaHora, string latitud_origen, string longitud_origen, string latitud_destino, string longitud_destino, string coste)
-        {
-            this.IdUsuario = idUsuario;
-            this.IdTaxi = idTaxi;
-            this.FechaHora = fechaHora;
-            this.Latitud_origen = latitud_origen;
-            this.Longitud_origen = longitud_origen;
-            this.Latitud_destino = latitud_destino;
-            this.Longitud_destino = longitud_destino;
-            this.Coste = coste;
-        }
-
         public int IdUsuario { get => idUsuario; set => idUsuario = value; }
         public int IdTaxi { get => idTaxi; set => idTaxi = value; }
         public DateTime FechaHora { get => fechaHora; set => fechaHora = value; }

@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TaxApp.taxiBDDTableAdapters;
 
 namespace TaxApp.Interfaz
 {
@@ -20,7 +21,7 @@ namespace TaxApp.Interfaz
     /// </summary>
     public partial class aplicacion_admin : Window
     {
-        Conexion conexion = new Conexion();
+        
         Usuario.Usuario usuario = new Usuario.Usuario();
         public aplicacion_admin()
         {
@@ -42,7 +43,10 @@ namespace TaxApp.Interfaz
             {
                 try
                 {
-                    conexion.ejecutaConsulta(usuario.deleteUsuarioSQL(usuario.getSesionActual()));
+                    SesionTableAdapter adapter = new SesionTableAdapter();
+                    adapter.Connection.Open();
+                    adapter.DeleteSesion(1);
+                    adapter.Connection.Close();
 
                     inicio window1 = new inicio();
                     this.Visibility = Visibility.Hidden;
