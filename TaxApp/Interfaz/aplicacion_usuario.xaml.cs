@@ -41,6 +41,8 @@ namespace TaxApp.Interfaz
                     adapter.DeleteSesion(usuario.getSesionActual());
                     adapter.Connection.Close();
 
+                    MessageBox.Show("Se ha cerrado sesión correctamente");
+
                     inicio window1 = new inicio();
                     this.Visibility = Visibility.Hidden;
                     window1.Show();
@@ -71,7 +73,7 @@ namespace TaxApp.Interfaz
 
         private void Borrar_Cuenta_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult dialog = MessageBox.Show("¿Seguro que deasea borrar su cuenta?", "Borrar Cuenta" ,MessageBoxButton.YesNo);
+            MessageBoxResult dialog = MessageBox.Show("¿Seguro que desea borrar su cuenta?", "Borrar Cuenta" ,MessageBoxButton.YesNo);
             if(dialog == MessageBoxResult.Yes)
             {
                 try
@@ -90,6 +92,7 @@ namespace TaxApp.Interfaz
                     user.DeleteQuery(idS);
                     user.Connection.Close();
 
+                    MessageBox.Show("Se ha borrado la cuenta y cerrado sesiones correctamente.");
                     // Revisar
                     inicio window1 = new inicio();
                     this.Visibility = Visibility.Hidden;
