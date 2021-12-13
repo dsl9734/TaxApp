@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="viajes" Height="450" Width="800">
     <Grid>
-        
+        <DataGrid x:Name="DataGrid" HorizontalAlignment="Left" Height="333" Margin="10,10,0,0" VerticalAlignment="Top" Width="774"/>
+        <Button x:Name ="Atrás" Content="Atrás" HorizontalAlignment="Left" Height="62" Margin="5,348,0,0" VerticalAlignment="Top" Width="190"/>
+        <Button x:Name ="Ver_Viajes" Content="Ver Viajes" HorizontalAlignment="Left" Height="62" Margin="541,348,0,0" VerticalAlignment="Top" Width="243" Click="Ver_Viajes_Click"/>
+
     </Grid>
 </Window>

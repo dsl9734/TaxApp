@@ -12,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TaxApp.taxiBDDTableAdapters;
+using static TaxApp.taxiBDD;
 
 namespace TaxApp.Interfaz.App_Admin
 {
@@ -32,12 +34,21 @@ namespace TaxApp.Interfaz.App_Admin
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Conexion conexion = new Conexion();
-            Taxi.Taxi taxi = new Taxi.Taxi();
-            //DataTable data = conexion.ejecutaConsultaDataTable(taxi.getTaxis());
-
             // Introducir datos en Data Grid
-            
+            Conexion conexion = new Conexion();
+            TaxiTableAdapter adapter = new TaxiTableAdapter();
+            adapter.Connection.Open();
+            TaxiDataTable data = adapter.GetData();
+            adapter.Connection.Close();
+
+            DataGrid.DataContext = data;  
+        }
+
+        private void Atrás_Click(object sender, RoutedEventArgs e)
+        {
+            aplicacion_admin window1 = new aplicacion_admin();
+            Visibility = Visibility.Hidden;
+            window1.Show();
         }
     }
 }
