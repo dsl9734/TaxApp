@@ -89,6 +89,9 @@
     <Compile Include="Interfaz\aplicacion_usuario.xaml.cs">
       <DependentUpon>aplicacion_usuario.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Interfaz\App_Admin\InformeHistorial.xaml.cs">
+      <DependentUpon>InformeHistorial.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Interfaz\App_Admin\taxis.xaml.cs">
       <DependentUpon>taxis.xaml</DependentUpon>
     </Compile>
@@ -122,6 +125,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Interfaz\aplicacion_usuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interfaz\App_Admin\InformeHistorial.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

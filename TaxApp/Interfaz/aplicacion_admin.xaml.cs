@@ -30,6 +30,10 @@ namespace TaxApp.Interfaz
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            //Informe Historial
+            App_Admin.InformeHistorial window1 = new App_Admin.InformeHistorial();
+            this.Visibility = Visibility.Hidden;
+            window1.Show();
 
         }
 

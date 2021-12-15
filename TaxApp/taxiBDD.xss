@@ -8,8 +8,8 @@
   <Shapes>
     <Shape ID="DesignTable:Usuario" ZOrder="5" X="46" Y="105" Height="319" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="168" />
     <Shape ID="DesignTable:Sesion" ZOrder="6" X="41" Y="434" Height="181" Width="281" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="76" />
-    <Shape ID="DesignTable:Taxi" ZOrder="1" X="896" Y="109" Height="227" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="122" />
-    <Shape ID="DesignTable:Viaje_Taxi" ZOrder="4" X="500" Y="111" Height="342" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="237" />
+    <Shape ID="DesignTable:Taxi" ZOrder="2" X="896" Y="109" Height="227" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="122" />
+    <Shape ID="DesignTable:Viaje_Taxi" ZOrder="1" X="500" Y="111" Height="388" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="237" />
   </Shapes>
   <Connectors>
     <Connector ID="DesignRelation:FK_Usuario_Sesion" ZOrder="7" LineWidth="11">
@@ -24,7 +24,7 @@
         </Point>
       </RoutePoints>
     </Connector>
-    <Connector ID="DesignRelation:FK_Viaje_Taxi_Taxi" ZOrder="3" LineWidth="11">
+    <Connector ID="DesignRelation:FK_Viaje_Taxi_Taxi" ZOrder="4" LineWidth="11">
       <RoutePoints>
         <Point>
           <X>896</X>
@@ -36,7 +36,7 @@
         </Point>
       </RoutePoints>
     </Connector>
-    <Connector ID="DesignRelation:FK_Viaje_Taxi_Usuario" ZOrder="2" LineWidth="11">
+    <Connector ID="DesignRelation:FK_Viaje_Taxi_Usuario" ZOrder="3" LineWidth="11">
       <RoutePoints>
         <Point>
           <X>346</X>
