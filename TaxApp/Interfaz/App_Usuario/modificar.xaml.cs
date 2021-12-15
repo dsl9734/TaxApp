@@ -25,7 +25,6 @@ namespace TaxApp.Interfaz.App_Usuario
     {
         string nombre, email, tlf, tarjeta, contrasena;
         Usuario.Usuario usuario = new Usuario.Usuario();
-        Conexion conexion = new Conexion();
 
         public modificar()
         {

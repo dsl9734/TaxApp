@@ -16,6 +16,7 @@ using DevExpress.Xpf.Map;
 using TaxApp.taxiBDDTableAdapters;
 using static TaxApp.taxiBDD;
 using System.Threading.Tasks;
+using System.Device.Location;
 
 namespace TaxApp.Interfaz.App_Usuario
 {
@@ -54,9 +55,9 @@ namespace TaxApp.Interfaz.App_Usuario
 
         private String calcularTarifa(Point origen,Point destino)
         {
-            double distancia = Math.Sqrt((Math.Pow(destino.X - origen.X, 2) + Math.Pow(destino.Y - origen.Y, 2)));
+            double distancia = DistanciaViajeKM(origen,destino)/1000000; // De metros a Km
             double precioBase = 5;
-            double precioKm = 0.1;
+            double precioKm = 4.0;
             double precio = Math.Round(precioBase + precioKm * distancia,2);
             if(precio >= 0)
             {
@@ -72,23 +73,14 @@ namespace TaxApp.Interfaz.App_Usuario
 
         private double DistanciaViajeKM (Point origen, Point destino)
         {
-            double distancia =  Math.Sqrt((Math.Pow(destino.X - origen.X, 2) / 2 + Math.Pow(destino.Y - origen.Y, 2)))+
-                                Math.Cos(EnRadianes(origen.X)) * 
-                                Math.Cos(EnRadianes(destino.X)) *
-                                AlCuadrado(Math.Sin(EnRadianes(destino.Y - origen.Y) / 2));
 
-            double c = 2 * Math.Atan2(Math.Sqrt(distancia), Math.Sqrt((double)(1 - distancia)));
+            var d1 = origen.X * (Math.PI / 180.0);
+            var num1 = origen.Y * (Math.PI / 180.0);
+            var d2 = destino.X * (Math.PI / 180.0);
+            var num2 = destino.Y * (Math.PI / 180.0) - num1;
+            var d3 = Math.Pow(Math.Sin((d2 - d1) / 2.0), 2.0) + Math.Cos(d1) * Math.Cos(d2) * Math.Pow(Math.Sin(num2 / 2.0), 2.0);
 
-            return c;
-
-        }
-        public static double AlCuadrado(double valor)
-        {
-            return Math.Pow(valor, 2);
-        }
-        public static double EnRadianes(double valor)
-        {
-            return Convert.ToSingle(Math.PI / 180) * valor;
+            return 6376500.0 * (2.0 * Math.Atan2(Math.Sqrt(d3), Math.Sqrt(1.0 - d3)));
         }
 
         private void Destino_T_TextChanged(object sender, TextChangedEventArgs e)
@@ -128,21 +120,22 @@ namespace TaxApp.Interfaz.App_Usuario
                     // adapter.UpdateCoordenadas(mousePointD.X.ToString(), mousePointD.Y.ToString(), idTaxi);
                     adapter.Connection.Close();
 
+                    /*
                     //Esto está para probar funcionamiento
                     TaxiTableAdapter adapterTS = new TaxiTableAdapter();
                     adapterTS.Connection.Open();
                     adapterTS.UpdateEstado("disponible", idTaxi);
                     adapterTS.UpdateCoordenadas(mousePointD.X.ToString(), mousePointD.Y.ToString(), idTaxi);
-                    adapterTS.Connection.Close();
+                    adapterTS.Connection.Close();*/
 
 
                     // Arreglar esta parte
-                    /*
+                    
                     // Introducir temporizador
-                    double distanciaKMTaxi = DistanciaViajeKM(mousePointO, mousePointD);
+                    double distanciaKMTaxi = DistanciaViajeKM(mousePointO, mousePointD)/1000000;
                     // Si velocidad media = 40 km/h
                     double tiempoMIL = HorasAMilisec(distanciaKMTaxi / 40);
-                    TemporizadorAsync(mousePointD, idTaxi, tiempoMIL);*/
+                    TemporizadorAsync(mousePointD, idTaxi, tiempoMIL);
 
                     // Itroducir envío a email
 
@@ -171,9 +164,9 @@ namespace TaxApp.Interfaz.App_Usuario
             adapter.Connection.Close();
         }
 
-        private double HorasAMilisec (double horas)
+        private double HorasAMilisec (double km)
         {
-            return horas * 3.6 * Math.Pow(10, 6);
+            return km / 50 * 3.6 * Math.Pow(10, 6);
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {

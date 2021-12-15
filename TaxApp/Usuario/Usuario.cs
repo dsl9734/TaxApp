@@ -18,7 +18,6 @@ namespace TaxApp.Usuario
         string tlf;
         string tarjeta;
         string contrasena;
-        Conexion con = new Conexion();
 
         public Usuario(string nombre, string correo, string tlf, string tarjeta, string contrasena)
         {
@@ -69,11 +68,11 @@ namespace TaxApp.Usuario
             {   
                 //Comprobar inicio sesión inicio
                 UsuarioTableAdapter comprobar = new UsuarioTableAdapter();
-                con.connection();
+                comprobar.Connection.Open();
                 
                 UsuarioDataTable sComprobar = comprobar.ComprobarSesion(inicioSesion, contrasena);
                 int i = comprobar.FillBy2(sComprobar, inicioSesion, contrasena);
-                con.closeConnection();
+                comprobar.Connection.Close();
                 //Comprobar inicio sesión fin
                 int id = int.Parse(sComprobar.Rows[0][0].ToString());
                 if (id > 0)
@@ -140,7 +139,6 @@ namespace TaxApp.Usuario
 
         public Usuario sqlUsuario(UsuarioDataTable dataU)
         {
-            Conexion conexion = new Conexion();
             Usuario usuario = new Usuario();
             try
             {

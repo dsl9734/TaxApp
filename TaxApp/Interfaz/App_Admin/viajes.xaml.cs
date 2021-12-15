@@ -29,31 +29,41 @@ namespace TaxApp.Interfaz.App_Admin
 
         private void Ver_Viajes_Click(object sender, RoutedEventArgs e)
         {
-            Viaje_TaxiTableAdapter adapter = new Viaje_TaxiTableAdapter();
-            adapter.Connection.Open();
-            Viaje_TaxiDataTable data = adapter.GetData();
-            adapter.Connection.Close();
 
-            
-
-            DataTable dataTable = new DataTable();
-            dataTable.Rows.Add(data.Rows);
-            dataTable.Columns.Add("Nombre Usuario");
-
-            UsuarioTableAdapter adapterU = new UsuarioTableAdapter();
-            UsuarioDataTable users = new UsuarioDataTable();
-
-            for (int i = 0; i < data.Rows.Count; i++)
+            // introducir try
+            try
             {
-                
-                adapterU.Connection.Open();
-                adapterU.GetDataBy3(int.Parse(data.Rows[i][1].ToString()));
-                adapterU.Connection.Close();
+                Viaje_TaxiTableAdapter adapter = new Viaje_TaxiTableAdapter();
+                adapter.Connection.Open();
+                DataTable dataTable = adapter.GetData();
+                adapter.Connection.Close();
 
-                dataTable.Rows[i][8] = users.Rows[0][1].ToString();
+                dataTable.Columns.Add("Nombre Usuario");
+
+                UsuarioTableAdapter adapterU = new UsuarioTableAdapter();
+                UsuarioDataTable users = new UsuarioDataTable();
+
+                for (int i = 0; i < dataTable.Rows.Count; i++)
+                {
+
+                    adapterU.Connection.Open();
+                    users = adapterU.GetDataBy3(int.Parse(dataTable.Rows[i][1].ToString()));
+                    adapterU.Connection.Close();
+
+                    dataTable.Rows[i][9] = users.Rows[0][1].ToString();
+                    users.Dispose();
+                }
+
+                DataGrid.ItemsSource = dataTable.DefaultView;
+                
+                
             }
 
-            DataGrid.DataContext = dataTable;
+            catch(Exception E)
+            {
+                MessageBox.Show(E.Message);
+            }
+            
         }
     }
 }

@@ -40,7 +40,7 @@ namespace TaxApp.Interfaz.App_Admin
             TaxiDataTable data = adapter.GetData();
             adapter.Connection.Close();
 
-            DataGrid.DataContext = data;  
+            DataGrid.ItemsSource = data.DefaultView;  
         }
 
         private void Atrás_Click(object sender, RoutedEventArgs e)

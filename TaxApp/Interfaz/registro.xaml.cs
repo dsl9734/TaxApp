@@ -61,7 +61,6 @@ namespace TaxApp.Interfaz
             else
             {
                 
-                Conexion conexion = new Conexion();
                 // Regitro en SQL
                 try
                 {

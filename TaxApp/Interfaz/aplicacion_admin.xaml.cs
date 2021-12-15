@@ -30,9 +30,6 @@ namespace TaxApp.Interfaz
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Conexion conexion = new Conexion();
-            DataTable data = new DataTable();
-            // Rellenar del Historial, preguntar
 
         }
 
