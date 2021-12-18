@@ -35,12 +35,21 @@ namespace TaxApp.Interfaz.App_Admin
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // Introducir datos en Data Grid
-            TaxiTableAdapter adapter = new TaxiTableAdapter();
-            adapter.Connection.Open();
-            TaxiDataTable data = adapter.GetData();
-            adapter.Connection.Close();
+            try
+            {
+                TaxiTableAdapter adapter = new TaxiTableAdapter();
+                adapter.Connection.Open();
+                TaxiDataTable data = adapter.GetData();
+                adapter.Connection.Close();
 
-            DataGrid.ItemsSource = data.DefaultView;  
+                DataGrid.ItemsSource = data.DefaultView;
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+             
         }
 
         private void Atrás_Click(object sender, RoutedEventArgs e)
